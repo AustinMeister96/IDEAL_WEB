@@ -1,0 +1,2738 @@
+<html lang="en">
+
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>IDEAL</title>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap datepicker -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@latest/dist/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+    // Initialize the datepicker for elements with class 'datepicker'
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd', // Set your desired date format
+        autoclose: true,
+    });
+});
+</script>
+
+
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    #dataentry{
+        background-color: white;
+        padding: 40px;
+    }
+
+    #lab_processing3{
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+
+        opacity: 1.0;
+    }
+    #lab_processing {
+        position: relative;
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+        opacity: 1.0;
+        border-radius: 10px; /* Adjust the radius as desired */
+    }
+
+    #lab_processing::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        z-index: -1;
+        box-shadow: 0 0 20px 20px white inset;
+        border-radius: 10px;
+        opacity: 0.5;
+    }
+    #main{
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 100px;
+
+    }
+
+    #reciva_entry {
+        padding-bottom: 10px;
+    }
+    .tab-content input[type="checkbox"] {
+    width: 15px;
+    margin-right: 15px; /* Adjust the spacing between checkbox and label */
+    }
+    .testing1{
+        display: flex;
+        align-items: center;
+    }
+    .form-group2 {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-group3 {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .line-through{
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+    .bold-and-large{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-field {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+
+    .cancer-history-form-row {
+    display: flex;
+    align-items: center;
+    }
+    .form-row {
+    display: flex;
+    }
+    .pdf-btn {
+        display: flex;
+        align-items: right;
+    }
+    .invisible-label{
+        color: white;
+    }
+
+
+    .form-table th {
+    width: 225px;
+    
+     }
+     .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    }
+
+    .popup p {
+      margin-bottom: 20px;
+    }
+
+    .popup button {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    #space-below{
+        margin-bottom: 20px;
+    }
+
+
+    .form-table label {
+    display: block;
+    }
+      table th, table td {
+    font-weight: normal;
+    }
+
+    .mb-test label {
+    width: 100px; /* Adjust the width as needed */
+    }
+    .mb-test2 label {
+    width: 140px; /* Adjust the width as needed */
+    }
+
+    .row.align-items-stretch [class^="col-"] {
+    display: flex;
+    flex-direction: column;
+    }       
+
+
+    
+    .bold-text {
+    font-weight: bold;
+    }
+
+
+
+
+    .parent {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+
+    .copd-size {
+
+    width: 150px; 
+    }
+    .emphysema-size {
+
+    width: 200px;
+    }
+    .emphysema-extent-size {
+
+    width: 200px; 
+    }
+    .cor-art-size {
+
+    width: 120px; 
+    }
+    .airways-size {
+
+    width: 200px; 
+    }
+    .actionable-size {
+ 
+    width: 220px; 
+    }
+
+    .interval-change-size {
+     
+    width: 185px;   
+    }
+    .axis-diameter-size {
+     
+    width: 185px;   
+    }
+    .location-size {
+     
+    width: 185px;   
+    }
+    .comments-size {
+     
+    width: 350px;   
+    }
+    .solid-size {
+     
+    width: 185px;   
+    }
+    .nodule-location-int-size    {
+        width: 125px;
+    }
+/* Increase the height and width of the comments box */
+    .comments-box textarea {
+    height: 200px; /* Adjust the height as needed */
+    width: 375px; /* Adjust the width as needed */
+    }
+    .status-size {
+        width: 175px;
+    }
+    .checkbox-container {
+        display: inline-block; /* This makes the divs appear inline on the same row */
+        margin-right: 30px; /* Adjust this value to set the desired space between the checkboxes */
+    }
+/* Center the checkboxes vertically */
+    input[type="checkbox"] {
+    vertical-align: middle;
+    }   
+    .label-class {
+    display: inline-block;
+    width: 220px;
+    }
+    .pink {
+        background-color: lightblue;
+        border-radius: 10px;
+    }
+    .pink2 {
+        background-color: lightcyan;
+        border-radius: 10px;
+    }
+
+    .black-border {
+    border: 1px solid black;
+    border-radius: 10px;
+    }
+</style>
+</html>
+
+
+
+
+<script>
+    // Get references to the checkbox inputs
+    const cat5FindingsCheckboxes = document.querySelectorAll('input[name="cat_5_findings"]');
+  
+    // Attach event listeners to each checkbox
+    cat5FindingsCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        // Check if any of the checkboxes are checked
+        const isAnyChecked = Array.from(cat5FindingsCheckboxes).some(input => input.checked);
+  
+        // Display the popup if any checkbox is checked
+        if (isAnyChecked) {
+          // Show the popup
+          const popup = document.getElementById('popup');
+          popup.style.display = 'block';
+  
+          // Center the popup on the screen
+          centerPopup();
+  
+          // Optional: You can also perform additional actions here
+        }
+      });
+    });
+  
+    // Function to center the popup on the screen
+    function centerPopup() {
+      const popup = document.getElementById('popup');
+      const screenWidth = window.innerWidth || document.documentElement.clientWidth;
+      const screenHeight = window.innerHeight || document.documentElement.clientHeight;
+      const popupWidth = popup.offsetWidth;
+      const popupHeight = popup.offsetHeight;
+      const left = (screenWidth - popupWidth) / 2;
+      const top = (screenHeight - popupHeight) / 2;
+      popup.style.left = left + 'px';
+      popup.style.top = top + 'px';
+    }
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  let noduleCount = 1; // Keep track of the number of nodules added
+
+  // Function to clone the form fields
+  function cloneNoduleForm() {
+    noduleCount++; // Increment nodule count
+    const formClone = $('#nodule-form-template').clone(); // Clone the template form
+    formClone.attr('id', `ct_nodule_form_${noduleCount}`); // Assign a unique ID to the cloned form
+    formClone.find('[id]').each(function() {
+      // Update the IDs of form fields to make them unique
+      const oldId = $(this).attr('id');
+      const newId = `${oldId}_${noduleCount}`;
+      $(this).attr('id', newId);
+      $(this).attr('name', newId); // Also update the name attribute for proper form submission
+    });
+    $('#nodule-form-container').append(formClone); // Append the cloned form to the container
+  }
+
+  // Add click event to "Add nodule" button
+  $('#add-nodule-btn').click(function() {
+    cloneNoduleForm();
+  });
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctScanDateInput = document.getElementById('ct_scan_date');
+        const fuMonthsInput = document.getElementById('radiologist_fu_mnths');
+        const fuDateInput = document.getElementById('fu_date');
+        
+        if (ctScanDateInput && fuMonthsInput && fuDateInput) {
+            fuMonthsInput.addEventListener('input', function() {
+                const selectedMonths = parseInt(this.value);
+                if (!isNaN(selectedMonths)) {
+                    const ctScanDate = new Date(ctScanDateInput.value);
+                    const followUpDate = new Date(ctScanDate);
+                    followUpDate.setMonth(ctScanDate.getMonth() + selectedMonths);
+                    
+                    const formattedDate = followUpDate.toISOString().slice(0, 10);
+                    fuDateInput.value = formattedDate;
+                }
+            });
+        }
+    });
+</script>
+  <div class="popup" id="popup">
+    <p>Please contact the study coordinator.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+
+
+<div id="main">
+    <div id="lab_processing" class="dataentry">
+        <div class="pdf-btn">
+        <a href=" IDEAL/static/IDEAL_Optional_Questionnaire_Clean_JD_02_May_2023.docx" download>Download Filled Form</a>
+        <label for="pdfUploadButton">Upload PDF</label>
+        <input  id="pdfUploadButton" type="file" name="Upload PDF">
+        <label for="pdfUploadDICOM">Upload DICOM</label>
+        <input  id="pdfUploadDICOM" type="file" name="Upload DICOM">
+        <a href="{% url 'download_pdf' %}" class="btn btn-primary">Download Form</a>
+        </div>
+        <h3 class="line-through">CT Scan Details</h3>
+        <form method="POST" action="{% url 'add_ct_scan' participant_id=participant.participant_number %}">
+            {% csrf_token %}
+            <input type="hidden" name="participant_num" value="{{ participant.id }}">
+
+            <table>
+                <tbody class="space-below">
+
+                  <tr>
+                    <th scope="row">CT Scan Date:</th>
+                    <td>{{ ct_scan_form.ct_scan_date }}</td>
+                    <th scope="row">CT Scan Visit ID:</th>
+                    <td>{{ ct_scan_form.ct_scan_visitID }}</td>
+                    <th scope="row">CT Scan Location:</th>
+                    <td>{{ ct_scan_form.ct_scan_location }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CT Scan Family History:</th>
+                    <td>{{ ct_scan_form.ct_scan_familty_history }}</td>
+                    <th scope="row">CT Scan PT Lung Cancer:</th>
+                    <td>{{ ct_scan_form.ct_scan_pt_lung_cancer }}</td>
+                    <th scope="row">DLP (mGy-cm):</th>
+                    <td>{{ ct_scan_form.ct_scan_dlp }}</td>
+
+                  </tr>
+                  <tr>
+                    <th class='bold-and-large'scope="row">Radiologist</th>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                </tr>
+                  <tr>
+                    <th scope="row">Radiologist:</th>
+                    <td>{{ ct_scan_form.ct_scan_radiologist }}</td>
+                    <th scope="row">Review Date:</th>
+                    <td>{{ ct_scan_form.ct_scan_review_date }}</td>
+                    <th scope="row">Follow-up Months:</th>
+                    <td>{{ ct_scan_form.radiologist_fu_mnths }}</td>
+                    <th scope="row">Follow-up Date:</th>
+                    <td>{{ ct_scan_form.radiologist_fu_mnths_date }}</td>
+
+                  </tr>
+                  <tr>
+                    <th class='bold-and-large'scope="row">CAD</th>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                   </tr>
+                  <tr>
+                    <th scope="row">Follow-up Months:</th>
+                    <td>{{ ct_scan_form.cad_fu_mnths }}</td>
+                    <th scope="row">Follow-up Date:</th>
+                    <td>{{ ct_scan_form.cad_fu_mnths_date }}</td>
+                  </tr>
+                  <tr>
+                    <th class='bold-and-large'scope="row">Final</th>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                    <td>
+                        <label class="invisible-label">_____</label>
+                        <label class="invisible-label">_____</label>
+                    </td>
+                   </tr>
+                <tr>
+                    <th scope="row">ILST Category:</th>
+                    <td>{{ ct_scan_form.ilst_cat }}</td>
+                    <th scope="row">Final Rec Follow-up Months:</th>
+                    <td>{{ ct_scan_form.final_rec_fu_mnths }}</td>
+                    <th scope="row">Follow-up Date:</th>
+                    <td>{{ ct_scan_form.final_rec_fu_mnths_date }}</td>
+                </tr>
+            </tbody>
+            </table> 
+        
+        </br>   
+        
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class="copd-size d-flex flex-column flex-md-wrap black-border ">
+                                
+                                <label class="bold-text">Emphysema:</label>
+                                    <div>{{ ct_scan_form.copd_emphysema.0 }}</div>
+                                    <div>{{ ct_scan_form.copd_emphysema.1 }}</div>
+                                    <div>{{ ct_scan_form.copd_emphysema.2 }}</div>
+                                    <div>{{ ct_scan_form.copd_emphysema.3 }}</div>
+                                    <div>{{ ct_scan_form.copd_emphysema.4 }}</div>
+                            </div>
+            
+                            <div class="emphysema-size d-flex flex-column flex-md-wrap black-border">
+                                <label class="bold-text">Emphysema Extent:</label>
+                                {% for value, label in ct_scan_form.copd_emphysema_extent.field.choices %}
+                                <label>
+                                    <input type="checkbox" name="{{ ct_scan_form.copd_emphysema_extent.html_name }}" value="{{ value }}"
+                                    {% if value in ct_scan_form.copd_emphysema_extent.data %}checked{% endif %}>
+                                    {{ label }}
+                                </label>
+                                {% endfor %}
+                            </div>
+            
+                            <div class="emphysema-extent-size d-flex flex-column black-border">
+                                <label class="bold-text">Emphysema Type:</label>
+                                {% for value, label in ct_scan_form.copd_emphysema_type.field.choices %}
+                                <label>
+                                    <input type="checkbox" name="{{ ct_scan_form.copd_emphysema_type.html_name }}" value="{{ value }}"
+                                    {% if value in ct_scan_form.copd_emphysema_type.data %}checked{% endif %}>
+                                    {{ label }}
+                                </label>
+                                {% endfor %}
+
+                                <label>Ditribution of Emphysema:</label>
+                                {% for value, label in ct_scan_form.copd_emphysema_distribution.field.choices %}
+                                <label>
+                                    <input type="checkbox" name="{{ ct_scan_form.copd_emphysema_distribution.html_name }}" value="{{ value }}"
+                                    {% if value in ct_scan_form.copd_emphysema_distribution.data %}checked{% endif %}>
+                                    {{ label }}
+                                </label>
+                                {% endfor %}
+                            </div>
+            
+                            <div class="cor-art-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Cor Art Calc:</label>
+                                {{ ct_scan_form.cor_art_calc.0 }}
+                                {{ ct_scan_form.cor_art_calc.1 }}
+                                {{ ct_scan_form.cor_art_calc.2 }}
+                                {{ ct_scan_form.cor_art_calc.3 }}
+                                {{ ct_scan_form.cor_art_calc.4 }}
+                                {{ ct_scan_form.cor_art_calc.5 }}
+                                <label>Cor Art Agatson:</label>
+                                <center><div>{{ ct_scan_form.cor_art_agatson }}</div></center>
+                                
+                            </div>
+                            
+                            <div class="airways-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Airways:</labeL>
+                                <div>
+                                    {{ ct_scan_form.airways.0 }}
+                                    {{ ct_scan_form.airways.1 }}
+                                </div>
+                                <label class="bold-text">Airways Type:</labeL>
+
+                                {% for value, label in ct_scan_form.airways_type.field.choices %}
+                                <label>
+                                    <input type="checkbox" name="{{ ct_scan_form.airways_type.html_name }}" value="{{ value }}"
+                                    {% if value in ct_scan_form.airways_type.data %}checked{% endif %}>
+                                    {{ label }}
+                                </label>
+                                {% endfor %}                                    
+                            </div>
+
+                            <div class="actionable-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Actionable Findings:</label>
+                                {% for value, label in ct_scan_form.cat_5_findings.field.choices %}
+                                <label>
+                                    <input type="checkbox" class="actionable-checkbox" name="{{ ct_scan_form.cat_5_findings.html_name }}" value="{{ value }}"
+                                    {% if value in ct_scan_form.cat_5_findings.data %}checked{% endif %}>
+                                    {{ label }}
+                                </label>
+                                {% endfor %}
+                                <label>Cat 5 Comments:</label>
+                                {{ ct_scan_form.cat_5_comments }}
+                            </div>
+
+                                
+                            <div class=" d-flex flex-wrap black-border mb1">
+            
+                                    
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <br>
+                <center>
+                <table>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="bold-and-large">Other Findings</th>
+                    <td></td>
+                    <th scope="row" class="bold-and-large">Comments</th>
+                    <td></td>
+                    <th scope="row" class="bold-and-large">Other Findings</th>
+                    <td class="bold-and-large">Comments</td>
+                    <th class="bold-and-large">Other Findings</th>
+                    <td></td>  
+                    <th scope="row" class="bold-and-large">Comments</th>
+                    <td></td> 
+        
+                  </tr>
+                  <tr>
+                    <th scope="row">Cardiovascular:</th>
+                    <td>{{ ct_scan_form.other_cardiovascular }}</td>
+                    <td>{{ ct_scan_form.other_cardiovascular_comments }}</td>
+
+                    <th scope="row">Musculoskeletal:</th>
+                    <td>{{ ct_scan_form.other_vertebral }}</td>
+                    
+                    <td>{{ ct_scan_form.other_vertebral_comments }}</td>
+                    <th scope="row">GI:</th>
+                    <td>{{ ct_scan_form.other_GI }}</td>
+                    
+                    <td>{{ ct_scan_form.other_GI_comments }}</td>
+
+                  </tr>
+
+                  <tr>
+                    <th scope="row"> Endocrine:</th>
+                    <td>{{ ct_scan_form.other_endocrine }}</td>
+                    
+                    <td>{{ ct_scan_form.other_endocrine_comments }}</td>
+                    <th scope="row">Other Lymph:</th>
+                    <td>{{ ct_scan_form.other_lymph }}</td>
+                    
+                    <td>{{ ct_scan_form.other_lymph_comments }}</td>
+                    <th scope="row">Pulmonary Fibrosis:</th>
+                    <td>{{ ct_scan_form.other_pulmonary_fibrosis }}</td>
+                    
+                    <td>{{ ct_scan_form.other_pulmonary_fibrosis_comments }}</td>
+
+                  </tr>
+
+
+
+
+                  </tr>
+                  <tr>
+                    <th scope="row">Breast:</th>
+                    <td>{{ ct_scan_form.other_breast }}</td>
+                    
+                    <td>{{ ct_scan_form.other_breast_comments }}</td>
+                    <th scope="row">Other:</th>
+                    <td>{{ ct_scan_form.other_other }}</td>
+                    <td>{{ ct_scan_form.other_other_comments }}</td>
+                    <th scope="row">Pleura:</th>
+                    <td>{{ ct_scan_form.other_pleura }}</td>
+                    
+                    <td>{{ ct_scan_form.other_pleura_comments }}</td>
+                    
+                    <td>{{ ct_scan_form.pleural_effusion_comments.effusion }} {{ ct_scan_form.pleural_effusion_comments.asbestos }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Musculoskeletal:</th>
+                    <td>{{ ct_scan_form.other_musculoskeletal }}</td>
+                    
+                    <td>{{ ct_scan_form.other_musculoskeletal_comments }}</td>
+                  <th scope="row">General Comments:</th>
+                    <td colspan="3">{{ ct_scan_form.general_comments }}</td>
+                  </tr>
+
+                  <tr>
+
+                  </tr>
+                  <tr>
+                </tbody>
+              </table>
+                </center>
+            <button stlye="align-right" type="submit" name="save_ct_scan" value="Save CT Scan Form">Save</button>
+
+          </form>
+        </br>
+    </br>
+</br>
+<center><h3 class="line-through">CT Nodules</h3></center>
+<div id="nodule-form-template">    
+    <form class="pink2" method="post">
+        
+    {% csrf_token %}
+    <input type="hidden" name="participant_num" value="{{ participant.id }}">
+    <label class="bold-and-large">Radiologist Reading</label>
+        <div class="justify-content-center">
+            <div class="container-border">
+                <div class="container-fluid">
+                    <div class="row gx-1 justify-content-center align-items-stretch">
+                        <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                            <div class="text-left">
+                                <div>
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_rank.id_for_label }}">Rank:</label>
+                                    {{ ct_nodule_form.nodule_rank }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_slice_num.id_for_label }}">Slice #:</label>
+                                    {{ ct_nodule_form.nodule_slice_num }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_segment.id_for_label }}">Segment:</label>
+                                    {{ ct_nodule_form.nodule_segment }}
+                                </div>
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                <div> 
+                                    {{ ct_nodule_form.nodule_status.0 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form.nodule_status.1 }}
+                                </div>
+                                <div> 
+                                    {{ ct_nodule_form.nodule_status.2 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form.nodule_status.3 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form.nodule_status.4 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form.nodule_status.5 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form.nodule_status.6 }}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="nodule-location-int-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                                <center><label class="bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Nodule Location</label></center>
+                                {{ ct_nodule_form.nodule_location_selection.0 }}
+                                {{ ct_nodule_form.nodule_location_selection.1 }}
+                                {{ ct_nodule_form.nodule_location_selection.2 }}
+                                {{ ct_nodule_form.nodule_location_selection.3 }}
+                                {{ ct_nodule_form.nodule_location_selection.4 }}
+                       
+                            </div>
+                        </div>
+                        <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                                <center><label class="bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change</label></center>
+                            {{ ct_nodule_form.nodule_interval_change.0 }}
+                            {{ ct_nodule_form.nodule_interval_change.1 }}
+                            {{ ct_nodule_form.nodule_interval_change.2 }}
+                            {{ ct_nodule_form.nodule_interval_change.3 }}
+                            {{ ct_nodule_form.nodule_interval_change.4 }}
+                            {{ ct_nodule_form.nodule_interval_change.5 }}
+                            {{ ct_nodule_form.nodule_interval_change.6 }}
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                            <div>
+                                <center><label class="bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type</label></center>
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.0 }}
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.1 }}
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.2 }}
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.3 }}
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.4 }}
+                            </div>
+                            <div >
+                                {{ ct_nodule_form.nodule_type.5 }}
+                            </div>       
+                            <div>
+                                {{ ct_nodule_form.nodule_type.6 }}
+                            </div>    
+                        </div>
+                            <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                <center><label class="bold-text" >Size (mm)</label></center>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                    {{ ct_nodule_form.nodule_axis_long }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                    {{ ct_nodule_form.nodule_axis_short }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                    {{ ct_nodule_form.nodule_axis_mean }}
+                                </div>
+
+
+                            </div>
+                            <div class="solid-size d-flex flex-wrap black-border">
+                                <center><label class="bold-text">Solid Part </label></center>
+                                <div class="mb-test">
+
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                        {{ ct_nodule_form.nodule_ssn_long }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                    <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                        {{ ct_nodule_form.nodule_ssn_short }}
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <center><label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description</label></center>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form.nodule_description.0 }}
+                                        {{ ct_nodule_form.nodule_description.1 }}
+                                        {{ ct_nodule_form.nodule_description.2 }}
+                                        {{ ct_nodule_form.nodule_description.3 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="location-size d-flex flex-wrap black-border">
+                                <div >
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form.nodule_location.0 }}
+                                        {{ ct_nodule_form.nodule_location.1 }}
+                                        {{ ct_nodule_form.nodule_location.2 }}
+                                    </div>
+                                </div>
+                                <center><label class="bold-text">Change:</label></center>
+
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">VDT:</label>
+                                        {{ ct_nodule_form.nodule_change_dd }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form.nodule_change_mean }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-size d-flex flex-wrap black-border mb1">
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                <div>
+                                    {{ ct_nodule_form.nodule_comments }}
+                                </div>
+                                <div>
+                                    <label for="">Fleichner Follow-up</label>
+                                    {{ct_nodule_form.nodule_fleicher_fu}}
+                                </div>
+                                <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form.nodule_risk_index }}
+                                </div>
+                                <div>
+                                    <label for="">Recommended Follow-up</label>
+                                    {{ct_nodule_form.nodule_recommended_fu}}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form.nodule_key_nodule }}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                    {{ ct_nodule_form.nodule_cancer_confirmed }}
+                                </div>
+                                <div>
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                    {{ ct_nodule_form.nodule_orders}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" name="save_ct_nodule" value="Save CT Nodule Form">Save</button>
+    </form>
+    <form  class="pink" method="post">
+        {% csrf_token %}
+        <label class="bold-and-large label-class">CAD</label>
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class=" d-flex flex-column flex-md-wrap black-border status-size">
+                                <div class="text-left">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                    <div> 
+                                        {{ ct_nodule_form.nodule_status.0 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form.nodule_status.1 }}
+                                    </div>
+                                    <div> 
+                                        {{ ct_nodule_form.nodule_status.2 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form.nodule_status.3 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form.nodule_status.4 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form.nodule_status.5 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nodule-location-int-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                    <center><label class="bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Nodule Location</label></center>
+                                    {{ ct_nodule_form.nodule_location_selection.0 }}
+                                    {{ ct_nodule_form.nodule_location_selection.1 }}
+                                    {{ ct_nodule_form.nodule_location_selection.2 }}
+                                    {{ ct_nodule_form.nodule_location_selection.3 }}
+                                    {{ ct_nodule_form.nodule_location_selection.4 }}
+                           
+                                </div>
+                            </div>
+                            <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                <center><label class=" bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change</label></center>
+                                {{ ct_nodule_form.nodule_interval_change.0 }}
+                                {{ ct_nodule_form.nodule_interval_change.1 }}
+                                {{ ct_nodule_form.nodule_interval_change.2 }}
+                                {{ ct_nodule_form.nodule_interval_change.3 }}
+                                {{ ct_nodule_form.nodule_interval_change.4 }}
+                                {{ ct_nodule_form.nodule_interval_change.5 }}
+                                {{ ct_nodule_form.nodule_interval_change.6 }}
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                    <div>
+                                        <center><label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type</label></center>
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.0 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.1 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.2 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.3 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.4 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form.nodule_type.5 }}
+                                    </div>       
+                                    <div>
+                                        {{ ct_nodule_form.nodule_type.6 }}
+                                    </div>    
+                                </div>
+                                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                    <center><label class=" bold-text" >Size (mm)</label></center>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                        {{ ct_nodule_form.nodule_axis_long }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                        {{ ct_nodule_form.nodule_axis_short }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form.nodule_axis_mean }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form.nodule_axis_volume }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                        {{ ct_nodule_form.nodule_axis_density }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_sd.id_for_label }}">SD:</label>
+                                        {{ ct_nodule_form.nodule_axis_sd }}
+                                    </div>
+                                </div>
+                                <div class="solid-size d-flex flex-wrap black-border">
+                                    <label class="bold-text">Solid Part </label>
+                                    <div class="mb-test">
+        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                            {{ ct_nodule_form.nodule_ssn_long }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                            {{ ct_nodule_form.nodule_ssn_short }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <center><label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description</label></center>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form.nodule_description.0 }}
+                                            {{ ct_nodule_form.nodule_description.1 }}
+                                            {{ ct_nodule_form.nodule_description.2 }}
+                                            {{ ct_nodule_form.nodule_description.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="location-size d-flex flex-wrap black-border">
+                                    <div >
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form.nodule_location.0 }}
+                                            {{ ct_nodule_form.nodule_location.1 }}
+                                            {{ ct_nodule_form.nodule_location.2 }}
+                                        </div>
+                                    </div>
+                                    <label class="bold-text">Change</label>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                            {{ ct_nodule_form.nodule_change_avediam }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">VDT:</label>
+                                            {{ ct_nodule_form.nodule_change_dd }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                            {{ ct_nodule_form.nodule_change_volume }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                            {{ ct_nodule_form.nodule_change_volsperc }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                            {{ ct_nodule_form.nodule_change_mean }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-size d-flex flex-wrap black-border mb1">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                    <div>
+                                        {{ ct_nodule_form.nodule_comments }}
+                                    </div>
+                                    <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form.nodule_risk_index }}
+                                    </div>
+                                    <div>
+                                        <label for="">Recommended Follow-up:</label>
+                                        {{ ct_nodule_form.nodule_recommended_fu}}
+                                    </div>
+                                    <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form.nodule_key_nodule }}
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                        {{ ct_nodule_form.nodule_cancer_confirmed }}
+                                    </div>
+                                    <div>
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                        {{ ct_nodule_form.nodule_orders}}
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    </form>
+    <div class="line-through"></div>
+    </form>
+</div>
+<div id="nodule-form-template">    
+    <form class="pink2" method="post">
+        
+    {% csrf_token %}
+    <input type="hidden" name="participant_num" value="{{ participant.id }}">
+    <label class="bold-and-large">Radiologist Found</label>
+        <div class="justify-content-center">
+            <div class="container-border">
+                <div class="container-fluid">
+                    <div class="row gx-1 justify-content-center align-items-stretch">
+                        <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                            <div class="text-left">
+                                <div>
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_rank.id_for_label }}">Rank:</label>
+                                    {{ ct_nodule_form2.nodule_rank }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_slice_num.id_for_label }}">Slice #:</label>
+                                    {{ ct_nodule_form2.nodule_slice_num }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_segment.id_for_label }}">Segment:</label>
+                                    {{ ct_nodule_form2.nodule_segment }}
+                                </div>
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                <div> 
+                                    {{ ct_nodule_form2.nodule_status.0 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form2.nodule_status.1 }}
+                                </div>
+                                <div> 
+                                    {{ ct_nodule_form2.nodule_status.2 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form2.nodule_status.3 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form2.nodule_status.4 }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                            <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                            {{ ct_nodule_form2.nodule_interval_change.0 }}
+                            {{ ct_nodule_form2.nodule_interval_change.1 }}
+                            {{ ct_nodule_form2.nodule_interval_change.2 }}
+                            {{ ct_nodule_form2.nodule_interval_change.3 }}
+                            {{ ct_nodule_form2.nodule_interval_change.4 }}
+                            {{ ct_nodule_form2.nodule_interval_change.5 }}
+                            {{ ct_nodule_form2.nodule_interval_change.6 }}
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                <div>
+                                    <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.0 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.1 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.2 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.3 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.4 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form2.nodule_type.5 }}
+                                </div>           
+                            </div>
+                            <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                <label class="center bold-text" >Axis Diameter (mm)</label>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                    {{ ct_nodule_form2.nodule_axis_long }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                    {{ ct_nodule_form2.nodule_axis_short }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                    {{ ct_nodule_form2.nodule_axis_mean }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                    {{ ct_nodule_form2.nodule_axis_volume }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                    {{ ct_nodule_form2.nodule_axis_density }}
+                                </div>
+
+                            </div>
+                            <div class="solid-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Solid Part: </label>
+                                <div class="mb-test">
+
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                        {{ ct_nodule_form2.nodule_ssn_long }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                    <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                        {{ ct_nodule_form.nodule_ssn_short }}
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form2.nodule_description.0 }}
+                                        {{ ct_nodule_form2.nodule_description.1 }}
+                                        {{ ct_nodule_form2.nodule_description.2 }}
+                                        {{ ct_nodule_form2.nodule_description.3 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="location-size d-flex flex-wrap black-border">
+                                <div >
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form2.nodule_location.0 }}
+                                        {{ ct_nodule_form2.nodule_location.1 }}
+                                        {{ ct_nodule_form2.nodule_location.2 }}
+                                    </div>
+                                </div>
+                                <label class="bold-text">Change:</label>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                        {{ ct_nodule_form2.nodule_change_avediam }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">VDT:</label>
+                                        {{ ct_nodule_form2.nodule_change_dd }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form2.nodule_change_volume }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                        {{ ct_nodule_form2.nodule_change_volsperc }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form2.nodule_change_mean }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-size d-flex flex-wrap black-border mb1">
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                <div>
+                                    {{ ct_nodule_form2.nodule_comments }}
+                                </div>
+                                <div>
+                                    <label for="">Fleichner Follow-up</label>
+                                    {{ct_nodule_form2.nodule_fleicher_fu}}
+                                </div>
+                                <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form2.nodule_risk_index }}
+                                </div>
+                                <div>
+                                    <label for="">Recommended Follow-up</label>
+                                    {{ct_nodule_form2.nodule_recommended_fu}}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form2.nodule_key_nodule }}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                    {{ ct_nodule_form2.nodule_cancer_confirmed }}
+                                </div>
+                                <div>
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                    {{ ct_nodule_form2nodule_orders}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <form  class="pink" method="post">
+        {% csrf_token %}
+        <label class="bold-and-large label-class">CAD Found</label>
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class=" d-flex flex-column flex-md-wrap black-border status-size">
+                                <div class="text-left">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                    <div> 
+                                        {{ ct_nodule_form2.nodule_status.0 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form2.nodule_status.1 }}
+                                    </div>
+                                    <div> 
+                                        {{ ct_nodule_form2.nodule_status.2 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form2.nodule_status.3 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form2.nodule_status.4 }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                                {{ ct_nodule_form2.nodule_interval_change.0 }}
+                                {{ ct_nodule_form2.nodule_interval_change.1 }}
+                                {{ ct_nodule_form2.nodule_interval_change.2 }}
+                                {{ ct_nodule_form2.nodule_interval_change.3 }}
+                                {{ ct_nodule_form2.nodule_interval_change.4 }}
+                                {{ ct_nodule_form2.nodule_interval_change.5 }}
+                                {{ ct_nodule_form2.nodule_interval_change.6 }}
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                    <div>
+                                        <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.0 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.1 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.2 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.3 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.4 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form2.nodule_type.5 }}
+                                    </div>           
+                                </div>
+                                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                    <label class="center bold-text" >Axis Diameter (mm)</label>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                        {{ ct_nodule_form2.nodule_axis_long }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                        {{ ct_nodule_form2.nodule_axis_short }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form2.nodule_axis_mean }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form2.nodule_axis_volume }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                        {{ ct_nodule_form2.nodule_axis_density }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_sd.id_for_label }}">SD:</label>
+                                        {{ ct_nodule_form2.nodule_axis_sd }}
+                                    </div>
+                                </div>
+                                <div class="solid-size d-flex flex-wrap black-border">
+                                    <label class="bold-text">Solid Part: </label>
+                                    <div class="mb-test">
+        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                            {{ ct_nodule_form2.nodule_ssn_long }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                            {{ ct_nodule_form2.nodule_ssn_short }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form2.nodule_description.0 }}
+                                            {{ ct_nodule_form2.nodule_description.1 }}
+                                            {{ ct_nodule_form2.nodule_description.2 }}
+                                            {{ ct_nodule_form2.nodule_description.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="location-size d-flex flex-wrap black-border">
+                                    <div >
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form2.nodule_location.0 }}
+                                            {{ ct_nodule_form2.nodule_location.1 }}
+                                            {{ ct_nodule_form2.nodule_location.2 }}
+                                        </div>
+                                    </div>
+                                    <label class="bold-text">Change:</label>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                            {{ ct_nodule_form2.nodule_change_avediam }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                            {{ ct_nodule_form2.nodule_change_dd }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                            {{ ct_nodule_form2.nodule_change_volume }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                            {{ ct_nodule_form2.nodule_change_volsperc }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                            {{ ct_nodule_form2.nodule_change_mean }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-size d-flex flex-wrap black-border mb1">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                    <div>
+                                        {{ ct_nodule_form2.nodule_comments }}
+                                    </div>
+                                    <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form2.nodule_risk_index }}
+                                    </div>
+                                    <div>
+                                        <label for="">Recommended Follow-up:</label>
+                                        {{ ct_nodule_form2.nodule_recommended_fu}}
+                                    </div>
+                                    <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form2.nodule_key_nodule }}
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                        {{ ct_nodule_form2.nodule_cancer_confirmed }}
+                                    </div>
+                                    <div>
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                        {{ ct_nodule_form2.nodule_orders}}
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    </form>
+    <div class="line-through"></div>
+    </form>
+</div>
+<div id="nodule-form-template">    
+    <form class="pink2" method="post">
+        
+    {% csrf_token %}
+    <input type="hidden" name="participant_num" value="{{ participant.id }}">
+    <label class="bold-and-large">Radiologist Found</label>
+        <div class="justify-content-center">
+            <div class="container-border">
+                <div class="container-fluid">
+                    <div class="row gx-1 justify-content-center align-items-stretch">
+                        <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                            <div class="text-left">
+                                <div>
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_rank.id_for_label }}">Rank:</label>
+                                    {{ ct_nodule_form3.nodule_rank }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_slice_num.id_for_label }}">Slice #:</label>
+                                    {{ ct_nodule_form3.nodule_slice_num }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_segment.id_for_label }}">Segment:</label>
+                                    {{ ct_nodule_form3.nodule_segment }}
+                                </div>
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                <div> 
+                                    {{ ct_nodule_form3.nodule_status.0 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form3.nodule_status.1 }}
+                                </div>
+                                <div> 
+                                    {{ ct_nodule_form3.nodule_status.2 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form3.nodule_status.3 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form3.nodule_status.4 }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                            <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                            {{ ct_nodule_form3.nodule_interval_change.0 }}
+                            {{ ct_nodule_form3.nodule_interval_change.1 }}
+                            {{ ct_nodule_form3.nodule_interval_change.2 }}
+                            {{ ct_nodule_form3.nodule_interval_change.3 }}
+                            {{ ct_nodule_form3.nodule_interval_change.4 }}
+                            {{ ct_nodule_form3.nodule_interval_change.5 }}
+                            {{ ct_nodule_form3.nodule_interval_change.6 }}
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                <div>
+                                    <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.0 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.1 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.2 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.3 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.4 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form3.nodule_type.5 }}
+                                </div>           
+                            </div>
+                            <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                <label class="center bold-text" >Axis Diameter (mm)</label>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                    {{ ct_nodule_form3.nodule_axis_long }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                    {{ ct_nodule_form3.nodule_axis_short }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                    {{ ct_nodule_form3.nodule_axis_mean }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                    {{ ct_nodule_form3.nodule_axis_volume }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                    {{ ct_nodule_form3.nodule_axis_density }}
+                                </div>
+
+                            </div>
+                            <div class="solid-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Solid Part: </label>
+                                <div class="mb-test">
+
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                        {{ ct_nodule_form3.nodule_ssn_long }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                    <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                        {{ ct_nodule_form3.nodule_ssn_short }}
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form3.nodule_description.0 }}
+                                        {{ ct_nodule_form3.nodule_description.1 }}
+                                        {{ ct_nodule_form3.nodule_description.2 }}
+                                        {{ ct_nodule_form3.nodule_description.3 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="location-size d-flex flex-wrap black-border">
+                                <div >
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form3.nodule_location.0 }}
+                                        {{ ct_nodule_form3.nodule_location.1 }}
+                                        {{ ct_nodule_form3.nodule_location.2 }}
+                                    </div>
+                                </div>
+                                <label class="bold-text">Change:</label>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                        {{ ct_nodule_form3.nodule_change_avediam }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                        {{ ct_nodule_form3.nodule_change_dd }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form3.nodule_change_volume }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                        {{ ct_nodule_form3.nodule_change_volsperc }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form3.nodule_change_mean }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-size d-flex flex-wrap black-border mb1">
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                <div>
+                                    {{ ct_nodule_form3.nodule_comments }}
+                                </div>
+                                <div>
+                                    <label for="">Fleichner Follow-up</label>
+                                    {{ct_nodule_form3.nodule_fleicher_fu}}
+                                </div>
+                                <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form3.nodule_risk_index }}
+                                </div>
+                                <div>
+                                    <label for="">Recommended Follow-up</label>
+                                    {{ct_nodule_form3.nodule_recommended_fu}}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form3.nodule_key_nodule }}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                    {{ ct_nodule_form3.nodule_cancer_confirmed }}
+                                </div>
+                                <div>
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                    {{ ct_nodule_form3.nodule_orders}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <form  class="pink" method="post">
+        {% csrf_token %}
+        <label class="bold-and-large label-class">CAD Found</label>
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class=" d-flex flex-column flex-md-wrap black-border status-size">
+                                <div class="text-left">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                    <div> 
+                                        {{ ct_nodule_form3.nodule_status.0 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form3.nodule_status.1 }}
+                                    </div>
+                                    <div> 
+                                        {{ ct_nodule_form3.nodule_status.2 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form3.nodule_status.3 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form3.nodule_status.4 }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                                {{ ct_nodule_form3.nodule_interval_change.0 }}
+                                {{ ct_nodule_form3.nodule_interval_change.1 }}
+                                {{ ct_nodule_form3.nodule_interval_change.2 }}
+                                {{ ct_nodule_form3.nodule_interval_change.3 }}
+                                {{ ct_nodule_form3.nodule_interval_change.4 }}
+                                {{ ct_nodule_form3.nodule_interval_change.5 }}
+                                {{ ct_nodule_form3.nodule_interval_change.6 }}
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                    <div>
+                                        <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.0 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.1 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.2 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.3 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.4 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form3.nodule_type.5 }}
+                                    </div>           
+                                </div>
+                                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                    <label class="center bold-text" >Axis Diameter (mm)</label>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                        {{ ct_nodule_form3.nodule_axis_long }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                        {{ ct_nodule_form3.nodule_axis_short }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form3.nodule_axis_mean }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form3.nodule_axis_volume }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                        {{ ct_nodule_form3.nodule_axis_density }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_sd.id_for_label }}">SD:</label>
+                                        {{ ct_nodule_form3.nodule_axis_sd }}
+                                    </div>
+                                </div>
+                                <div class="solid-size d-flex flex-wrap black-border">
+                                    <label class="bold-text">Solid Part: </label>
+                                    <div class="mb-test">
+        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                            {{ ct_nodule_form3.nodule_ssn_long }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                            {{ ct_nodule_form3.nodule_ssn_short }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form3.nodule_description.0 }}
+                                            {{ ct_nodule_form3.nodule_description.1 }}
+                                            {{ ct_nodule_form3.nodule_description.2 }}
+                                            {{ ct_nodule_form3.nodule_description.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="location-size d-flex flex-wrap black-border">
+                                    <div >
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form3.nodule_location.0 }}
+                                            {{ ct_nodule_form3.nodule_location.1 }}
+                                            {{ ct_nodule_form3.nodule_location.2 }}
+                                        </div>
+                                    </div>
+                                    <label class="bold-text">Change:</label>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                            {{ ct_nodule_form3.nodule_change_avediam }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                            {{ ct_nodule_form3.nodule_change_dd }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                            {{ ct_nodule_form3.nodule_change_volume }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                            {{ ct_nodule_form3.nodule_change_volsperc }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                            {{ ct_nodule_form3.nodule_change_mean }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-size d-flex flex-wrap black-border mb1">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                    <div>
+                                        {{ ct_nodule_form3.nodule_comments }}
+                                    </div>
+                                    <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form3.nodule_risk_index }}
+                                    </div>
+                                    <div>
+                                        <label for="">Recommended Follow-up:</label>
+                                        {{ ct_nodule_form3.nodule_recommended_fu}}
+                                    </div>
+                                    <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form3.nodule_key_nodule }}
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                        {{ ct_nodule_form3.nodule_cancer_confirmed }}
+                                    </div>
+                                    <div>
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                        {{ ct_nodule_form3.nodule_orders}}
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    </form>
+    <div class="line-through"></div>
+    </form>
+</div>
+<div id="nodule-form-template">    
+    <form class="pink2" method="post">
+        
+    {% csrf_token %}
+    <input type="hidden" name="participant_num" value="{{ participant.id }}">
+    <label class="bold-and-large">Radiologist Found</label>
+        <div class="justify-content-center">
+            <div class="container-border">
+                <div class="container-fluid">
+                    <div class="row gx-1 justify-content-center align-items-stretch">
+                        <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                            <div class="text-left">
+                                <div>
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_rank.id_for_label }}">Rank:</label>
+                                    {{ ct_nodule_form4.nodule_rank }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_slice_num.id_for_label }}">Slice #:</label>
+                                    {{ ct_nodule_form4.nodule_slice_num }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_segment.id_for_label }}">Segment:</label>
+                                    {{ ct_nodule_form4.nodule_segment }}
+                                </div>
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                <div> 
+                                    {{ ct_nodule_form4.nodule_status.0 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form4.nodule_status.1 }}
+                                </div>
+                                <div> 
+                                    {{ ct_nodule_form4.nodule_status.2 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form4.nodule_status.3 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form4.nodule_status.4 }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                            <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                            {{ ct_nodule_form4.nodule_interval_change.0 }}
+                            {{ ct_nodule_form4.nodule_interval_change.1 }}
+                            {{ ct_nodule_form4.nodule_interval_change.2 }}
+                            {{ ct_nodule_form4.nodule_interval_change.3 }}
+                            {{ ct_nodule_form4.nodule_interval_change.4 }}
+                            {{ ct_nodule_form4.nodule_interval_change.5 }}
+                            {{ ct_nodule_form4.nodule_interval_change.6 }}
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                <div>
+                                    <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.0 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.1 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.2 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.3 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.4 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form4.nodule_type.5 }}
+                                </div>           
+                            </div>
+                            <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                <label class="center bold-text" >Axis Diameter (mm)</label>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                    {{ ct_nodule_form4.nodule_axis_long }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                    {{ ct_nodule_form4.nodule_axis_short }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                    {{ ct_nodule_form4.nodule_axis_mean }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                    {{ ct_nodule_form4.nodule_axis_volume }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                    {{ ct_nodule_form4.nodule_axis_density }}
+                                </div>
+
+                            </div>
+                            <div class="solid-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Solid Part: </label>
+                                <div class="mb-test">
+
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                        {{ ct_nodule_form4.nodule_ssn_long }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                    <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                        {{ ct_nodule_form4.nodule_ssn_short }}
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form4.nodule_description.0 }}
+                                        {{ ct_nodule_form4.nodule_description.1 }}
+                                        {{ ct_nodule_form4.nodule_description.2 }}
+                                        {{ ct_nodule_form4.nodule_description.3 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="location-size d-flex flex-wrap black-border">
+                                <div >
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form4.nodule_location.0 }}
+                                        {{ ct_nodule_form4.nodule_location.1 }}
+                                        {{ ct_nodule_form4.nodule_location.2 }}
+                                    </div>
+                                </div>
+                                <label class="bold-text">Change:</label>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                        {{ ct_nodule_form4.nodule_change_avediam }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                        {{ ct_nodule_form4.nodule_change_dd }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form4.nodule_change_volume }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                        {{ ct_nodule_form4.nodule_change_volsperc }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form4.nodule_change_mean }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-size d-flex flex-wrap black-border mb1">
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                <div>
+                                    {{ ct_nodule_form4.nodule_comments }}
+                                </div>
+                                <div>
+                                    <label for="">Fleichner Follow-up</label>
+                                    {{ct_nodule_form4.nodule_fleicher_fu}}
+                                </div>
+                                <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form4.nodule_risk_index }}
+                                </div>
+                                <div>
+                                    <label for="">Recommended Follow-up</label>
+                                    {{ct_nodule_form4.nodule_recommended_fu}}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form4.nodule_key_nodule }}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                    {{ ct_nodule_form4.nodule_cancer_confirmed }}
+                                </div>
+                                <div>
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                    {{ ct_nodule_form4.nodule_orders}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <form  class="pink" method="post">
+        {% csrf_token %}
+        <label class="bold-and-large label-class">CAD Found</label>
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class=" d-flex flex-column flex-md-wrap black-border status-size">
+                                <div class="text-left">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                    <div> 
+                                        {{ ct_nodule_form4.nodule_status.0 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form4.nodule_status.1 }}
+                                    </div>
+                                    <div> 
+                                        {{ ct_nodule_form4.nodule_status.2 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form4.nodule_status.3 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form4.nodule_status.4 }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                                {{ ct_nodule_form4.nodule_interval_change.0 }}
+                                {{ ct_nodule_form4.nodule_interval_change.1 }}
+                                {{ ct_nodule_form4.nodule_interval_change.2 }}
+                                {{ ct_nodule_form4.nodule_interval_change.3 }}
+                                {{ ct_nodule_form4.nodule_interval_change.4 }}
+                                {{ ct_nodule_form4.nodule_interval_change.5 }}
+                                {{ ct_nodule_form4.nodule_interval_change.6 }}
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                    <div>
+                                        <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.0 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.1 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.2 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.3 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.4 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form4.nodule_type.5 }}
+                                    </div>           
+                                </div>
+                                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                    <label class="center bold-text" >Axis Diameter (mm)</label>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                        {{ ct_nodule_form4.nodule_axis_long }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                        {{ ct_nodule_form4.nodule_axis_short }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form4.nodule_axis_mean }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form4.nodule_axis_volume }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                        {{ ct_nodule_form4.nodule_axis_density }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_sd.id_for_label }}">SD:</label>
+                                        {{ ct_nodule_form4.nodule_axis_sd }}
+                                    </div>
+                                </div>
+                                <div class="solid-size d-flex flex-wrap black-border">
+                                    <label class="bold-text">Solid Part: </label>
+                                    <div class="mb-test">
+        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                            {{ ct_nodule_form4.nodule_ssn_long }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                            {{ ct_nodule_form4.nodule_ssn_short }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form4.nodule_description.0 }}
+                                            {{ ct_nodule_form4.nodule_description.1 }}
+                                            {{ ct_nodule_form4.nodule_description.2 }}
+                                            {{ ct_nodule_form4.nodule_description.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="location-size d-flex flex-wrap black-border">
+                                    <div >
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form4.nodule_location.0 }}
+                                            {{ ct_nodule_form4.nodule_location.1 }}
+                                            {{ ct_nodule_form4.nodule_location.2 }}
+                                        </div>
+                                    </div>
+                                    <label class="bold-text">Change:</label>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                            {{ ct_nodule_form4.nodule_change_avediam }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                            {{ ct_nodule_form4.nodule_change_dd }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                            {{ ct_nodule_form4.nodule_change_volume }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                            {{ ct_nodule_form4.nodule_change_volsperc }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                            {{ ct_nodule_form4.nodule_change_mean }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-size d-flex flex-wrap black-border mb1">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                    <div>
+                                        {{ ct_nodule_form4.nodule_comments }}
+                                    </div>
+                                    <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form4.nodule_risk_index }}
+                                    </div>
+                                    <div>
+                                        <label for="">Recommended Follow-up:</label>
+                                        {{ ct_nodule_form4.nodule_recommended_fu}}
+                                    </div>
+                                    <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form4.nodule_key_nodule }}
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                        {{ ct_nodule_form4.nodule_cancer_confirmed }}
+                                    </div>
+                                    <div>
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                        {{ ct_nodule_form4.nodule_orders}}
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+    <div class="line-through"></div>
+    </form>
+</div>
+<div id="nodule-form-template">    
+    <form class="pink2" method="post">
+        
+    {% csrf_token %}
+    <input type="hidden" name="participant_num" value="{{ participant.id }}">
+    <label class="bold-and-large">Radiologist Found</label>
+        <div class="justify-content-center">
+            <div class="container-border">
+                <div class="container-fluid">
+                    <div class="row gx-1 justify-content-center align-items-stretch">
+                        <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                            <div class="text-left">
+                                <div>
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_rank.id_for_label }}">Rank:</label>
+                                    {{ ct_nodule_form5.nodule_rank }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_slice_num.id_for_label }}">Slice #:</label>
+                                    {{ ct_nodule_form5.nodule_slice_num }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_segment.id_for_label }}">Segment:</label>
+                                    {{ ct_nodule_form5.nodule_segment }}
+                                </div>
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                <div> 
+                                    {{ ct_nodule_form5.nodule_status.0 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form5.nodule_status.1 }}
+                                </div>
+                                <div> 
+                                    {{ ct_nodule_form5.nodule_status.2 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form5.nodule_status.3 }}
+                                </div>
+                                <div>
+                                    {{ ct_nodule_form5.nodule_status.4 }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                            <div class="text-left">
+                            <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                            {{ ct_nodule_form5.nodule_interval_change.0 }}
+                            {{ ct_nodule_form5.nodule_interval_change.1 }}
+                            {{ ct_nodule_form5.nodule_interval_change.2 }}
+                            {{ ct_nodule_form5.nodule_interval_change.3 }}
+                            {{ ct_nodule_form5.nodule_interval_change.4 }}
+                            {{ ct_nodule_form5.nodule_interval_change.5 }}
+                            {{ ct_nodule_form5.nodule_interval_change.6 }}
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                <div>
+                                    <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.0 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.1 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.2 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.3 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.4 }}
+                                </div>
+                                <div >
+                                    {{ ct_nodule_form5.nodule_type.5 }}
+                                </div>           
+                            </div>
+                            <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                <label class="center bold-text" >Axis Diameter (mm)</label>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                    {{ ct_nodule_form5.nodule_axis_long }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                    {{ ct_nodule_form5.nodule_axis_short }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                    {{ ct_nodule_form5.nodule_axis_mean }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                    {{ ct_nodule_form5.nodule_axis_volume }}
+                                </div>
+                                <div class="mb-test">
+                                    <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                    {{ ct_nodule_form5.nodule_axis_density }}
+                                </div>
+
+                            </div>
+                            <div class="solid-size d-flex flex-wrap black-border">
+                                <label class="bold-text">Solid Part: </label>
+                                <div class="mb-test">
+
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                        {{ ct_nodule_form5.nodule_ssn_long }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                    <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                        {{ ct_nodule_form5.nodule_ssn_short }}
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form5.nodule_description.0 }}
+                                        {{ ct_nodule_form5.nodule_description.1 }}
+                                        {{ ct_nodule_form5.nodule_description.2 }}
+                                        {{ ct_nodule_form5.nodule_description.3 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="location-size d-flex flex-wrap black-border">
+                                <div >
+                                    <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                    <div class="align-entry-box">
+                                        {{ ct_nodule_form5.nodule_location.0 }}
+                                        {{ ct_nodule_form5.nodule_location.1 }}
+                                        {{ ct_nodule_form5.nodule_location.2 }}
+                                    </div>
+                                </div>
+                                <label class="bold-text">Change:</label>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                        {{ ct_nodule_form5.nodule_change_avediam }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                        {{ ct_nodule_form5.nodule_change_dd }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form5.nodule_change_volume }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                        {{ ct_nodule_form5.nodule_change_volsperc }}
+                                    </div>
+                                </div>
+                                <div class="mb-test">
+                                    <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form5.nodule_change_mean }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-size d-flex flex-wrap black-border mb1">
+                                <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                <div>
+                                    {{ ct_nodule_form5.nodule_comments }}
+                                </div>
+                                <div>
+                                    <label for="">Fleichner Follow-up</label>
+                                    {{ct_nodule_form5.nodule_fleicher_fu}}
+                                </div>
+                                <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form5.nodule_risk_index }}
+                                </div>
+                                <div>
+                                    <label for="">Recommended Follow-up</label>
+                                    {{ct_nodule_form5.nodule_recommended_fu}}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form5.nodule_key_nodule }}
+                                </div>
+                                <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                    {{ ct_nodule_form5.nodule_cancer_confirmed }}
+                                </div>
+                                <div>
+                                    <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                    {{ ct_nodule_form5.nodule_orders}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <form  class="pink" method="post">
+        {% csrf_token %}
+        <label class="bold-and-large label-class">CAD Found</label>
+            <div class="justify-content-center">
+                <div class="container-border">
+                    <div class="container-fluid">
+                        <div class="row gx-1 justify-content-center align-items-stretch">
+                            <div class=" d-flex flex-column flex-md-wrap black-border status-size">
+                                <div class="text-left">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_status.id_for_label }}">Status:</label>
+                                    <div> 
+                                        {{ ct_nodule_form5.nodule_status.0 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form5.nodule_status.1 }}
+                                    </div>
+                                    <div> 
+                                        {{ ct_nodule_form5.nodule_status.2 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form5.nodule_status.3 }}
+                                    </div>
+                                    <div>
+                                        {{ ct_nodule_form5.nodule_status.4 }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                                <div class="text-left">
+                                <label class="center bold-text" for="{{ ct_nodule_form.nodule_interval_change.id_for_label }}">Interval Change:</label>
+                                {{ ct_nodule_form5.nodule_interval_change.0 }}
+                                {{ ct_nodule_form5.nodule_interval_change.1 }}
+                                {{ ct_nodule_form5.nodule_interval_change.2 }}
+                                {{ ct_nodule_form5.nodule_interval_change.3 }}
+                                {{ ct_nodule_form5.nodule_interval_change.4 }}
+                                {{ ct_nodule_form5.nodule_interval_change.5 }}
+                                {{ ct_nodule_form5.nodule_interval_change.6 }}
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                                    <div>
+                                        <label class="center bold-text" for="{{ ct_nodule_form.nodule_type.id_for_label }}">Type:</label>
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.0 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.1 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.2 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.3 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.4 }}
+                                    </div>
+                                    <div >
+                                        {{ ct_nodule_form5.nodule_type.5 }}
+                                    </div>           
+                                </div>
+                                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                                    <label class="center bold-text" >Axis Diameter (mm)</label>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_long.id_for_label }}">Long:</label>
+                                        {{ ct_nodule_form5.nodule_axis_long }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_short.id_for_label }}">Short:</label>
+                                        {{ ct_nodule_form5.nodule_axis_short }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_mean.id_for_label }}">Mean:</label>
+                                        {{ ct_nodule_form5.nodule_axis_mean }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_volume.id_for_label }}">Volume:</label>
+                                        {{ ct_nodule_form5.nodule_axis_volume }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_density.id_for_label }}">Density:</label>
+                                        {{ ct_nodule_form5.nodule_axis_density }}
+                                    </div>
+                                    <div class="mb-test">
+                                        <label for="{{ ct_nodule_form.nodule_axis_sd.id_for_label }}">SD:</label>
+                                        {{ ct_nodule_form5.nodule_axis_sd }}
+                                    </div>
+                                </div>
+                                <div class="solid-size d-flex flex-wrap black-border">
+                                    <label class="bold-text">Solid Part: </label>
+                                    <div class="mb-test">
+        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_ssn_long.id_for_label }}">SSN Long:</label>
+                                            {{ ct_nodule_form5.nodule_ssn_long }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                        <label for="{{ ct_nodule_form.nodule_ssn_short.id_for_label }}">SSN Short:</label>
+                                            {{ ct_nodule_form.nodule_ssn_short }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_description.id_for_label }}">Description:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form5.nodule_description.0 }}
+                                            {{ ct_nodule_form5.nodule_description.1 }}
+                                            {{ ct_nodule_form5.nodule_description.2 }}
+                                            {{ ct_nodule_form5.nodule_description.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="location-size d-flex flex-wrap black-border">
+                                    <div >
+                                        <label class='bold-text' for="{{ ct_nodule_form.nodule_location.id_for_label }}">Location:</label>
+                                        <div class="align-entry-box">
+                                            {{ ct_nodule_form5.nodule_location.0 }}
+                                            {{ ct_nodule_form5.nodule_location.1 }}
+                                            {{ ct_nodule_form5.nodule_location.2 }}
+                                        </div>
+                                    </div>
+                                    <label class="bold-text">Change:</label>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_avediam.id_for_label }}">AveDiam:</label>
+                                            {{ ct_nodule_form5.nodule_change_avediam }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_dd.id_for_label }}">DD:</label>
+                                            {{ ct_nodule_form5.nodule_change_dd }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volume.id_for_label }}">Volume:</label>
+                                            {{ ct_nodule_form5.nodule_change_volume }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_volsperc.id_for_label }}">VolsPerc:</label>
+                                            {{ ct_nodule_form5.nodule_change_volsperc }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-test">
+                                        <div class="align-entry-box">
+                                            <label for="{{ ct_nodule_form.nodule_change_mean.id_for_label }}">Mean:</label>
+                                            {{ ct_nodule_form5.nodule_change_mean }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-size d-flex flex-wrap black-border mb1">
+                                    <label class="bold-text" for="{{ ct_nodule_form.nodule_comments.id_for_label }}">Comments:</label>
+                                    <div>
+                                        {{ ct_nodule_form5.nodule_comments }}
+                                    </div>
+                                    <div class="">
+                                    <label for="{{ ct_nodule_form.nodule_risk_index.id_for_label }}">Malignancy Risk Score:</label>
+                                    {{ ct_nodule_form5.nodule_risk_index }}
+                                    </div>
+                                    <div>
+                                        <label for="">Recommended Follow-up:</label>
+                                        {{ ct_nodule_form5.nodule_recommended_fu}}
+                                    </div>
+                                    <div class="checkbox-container">
+                                    <label for="{{ ct_nodule_form.nodule_key_nodule.id_for_label }}">Key Nodule:</label>
+                                    {{ ct_nodule_form5.nodule_key_nodule }}
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Cancer Confirmed:</label>
+                                        {{ ct_nodule_form5.nodule_cancer_confirmed }}
+                                    </div>
+                                    <div>
+                                        <label for="{{ ct_nodule_form.nodule_cancer_confirmed.id_for_label }}">Orders:</label>
+                                        {{ ct_nodule_form5.nodule_orders}}
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    </form>
+    <div class="line-through"></div>
+    </form>
+</div>
+
+    <div class="line-through"></div>
+    </form>
+</div>
+        <button onclick="window.location.href = '/DataEntry/add_mandatory_questionaire_c'">Submit</button>
+        <button id="add-nodule-btn">Add Nodule</button>
+    </div> 
+</div>
+<div id="nodule-form-container">
+    <!-- Render previously added CTNoduleForm instances -->
+    {% for ct_nodule_form in ct_nodule_forms %}
+      <form class="pink2" id="ct_nodule_form_{{ forloop.counter }}" method="post">
+        {% csrf_token %}
+        <!-- Render form fields dynamically here -->
+        <!-- Use the same field names and IDs as mentioned in the JavaScript section above -->
+        <!-- For example: -->
+        <div>
+          <label class="bold-text" for="nodule_rank_{{ forloop.counter }}">Rank:</label>
+          <input type="text" id="nodule_rank_{{ forloop.counter }}" name="nodule_rank_{{ forloop.counter }}" value="{{ ct_nodule_form.nodule_rank }}">
+        </div>
+        <!-- Add other fields in a similar manner -->
+      </form>
+    {% endfor %}
+  </div>
+  <script>
+    $(document).ready(function() {
+        // Add a click event listener to the checkboxes with class "actionable-checkbox"
+        $(".actionable-checkbox").on("click", function() {
+            if ($(this).is(":checked")) {
+                // If the checkbox is checked, show the pop-up window
+                alert("Contact Study Doctor");
+            }
+        });
+    });
+    </script>
+
+
+{% endblock %}

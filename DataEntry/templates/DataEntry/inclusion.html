@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  #dataentry{
+      background-color: white;
+      padding: 40px;
+  }
+
+  #lab_processing3{
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+
+      opacity: 1.0;
+  }
+  #lab_processing {
+      position: relative;
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+      opacity: 1.0;
+      border-radius: 10px; /* Adjust the radius as desired */
+  }
+
+  #lab_processing::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+      box-shadow: 0 0 20px 20px white inset;
+      border-radius: 10px;
+      opacity: 0.5;
+  }
+  #main{
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 100px;
+
+  }
+
+  #reciva_entry {
+      padding-bottom: 10px;
+  }
+  .tab-content input[type="checkbox"] {
+  width: 15px;
+  margin-right: 15px; /* Adjust the spacing between checkbox and label */
+  }
+  .testing1{
+      display: flex;
+      align-items: center;
+  }
+  .form-group2 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-group3 {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .form-group {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .line-through{
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+  }
+  .bold-and-large{
+      font-weight: bold;
+      font-size: 20px;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-field {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .btn {
+      float: right;
+
+  }
+  .label-class {
+  display: inline-block;
+  width: 600px;
+  }
+  .label-class2 {
+  display: inline-block;
+  width: 180 px;
+  }
+  .participant-status {
+    width: 150px;
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="lab_processing" class="dataentry">
+    <p class="bold-and-large">Inclusion / Exclusion Criteria</p>
+    <div id="inclusionFormContainer">
+    <form id="participantForm" method="post">
+        {% csrf_token %}
+        
+        <div>
+          <label class="label-class" for="id_inclusion_criteria_1">1. Are you between the ages of 50 - 80?</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_1.0 }}
+          </div>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_1.1 }}
+          </div>
+
+        </div>
+        <div>
+          <label class="label-class" for="id_inclusion_criteria_2">2. Are you able to consent?  </label>                                                                                          
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_2.0 }}
+          </div>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_2.1 }}
+          </div>
+
+        </div>
+        <div>
+            <label class="label-class" for="id_inclusion_criteria_3">3. Are you able to abstain from smoking tobacco for 24 hours?</label>
+            <div class="form-check-inline">
+              <label for="{{ form.inclusion_criteria_3.0.id_for_label }}"></label>
+              {{ form.inclusion_criteria_3.0 }}
+            </div>
+            <div class="form-check-inline">
+              <label for="{{ form.inclusion_criteria_3.1.id_for_label }}"></label>
+              {{ form.inclusion_criteria_3.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class" for="id_inclusion_criteria_4">4. Are you willing to consent to the study?</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_4.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_4.1 }}
+            </div>
+
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_5">5. Are you currently pregnant?</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_5.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_5.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_6">6. Have you been diagnosed with a respiratory infection in the last 3 months?   </label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_6.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_6.1 }}
+            </div>
+
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_7">7. Do you currently have any other cancer besides lung cancer?  </label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_7.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_7.1 }}
+            </div>
+
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_8">8. Are you too sick to provide a breath sample? </label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_8.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_8.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_9">9. Do you currently have any cancerous or non-cancerous lung nodules</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_9.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_9.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_9_a">9. (a) Do you have cancerous lung nodules? </label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_a.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_a.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_9_b">9. (b) Have your nodule(s) been followed for over 2 years?</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_b.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_b.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_9_c">9. (c) Do you have a chest CT positive scan for a nodule >=6mm to 3cm?</label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_c.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_c.1 }}
+            </div>
+        </div>
+        <div>
+          <label class="label-class"for="id_inclusion_criteria_9_d">9. (d) Is your lung cancer between stages 1 - 3A? </label>
+          <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_d.0 }}
+            </div>
+            <div class="form-check-inline">
+            {{ form.inclusion_criteria_9_d.1 }}
+            </div>
+        </div>
+        <p class="bold-and-large">Participant Status</p>
+        <div>
+          <label class="participant-status" for="id_inclusion_status">Inclusion Status:</label>
+          {{ form.inclusion_status }}
+        </div>
+        <div>
+          <label class="participant-status" for="id_screening_status">Screening Status:</label>
+          {{ form.screening_status }}
+        </div>
+        <div>
+          <label class="participant-status" for="id_consent_status">Consent Status:</label>
+          {{ form.consent_status }}
+          <input class="" type="file" name="pdf_file">
+        </div>
+        {% if form.errors.consent_status %}
+        <p class="error">{{ form.errors.consent_status }}</p>
+    {% endif %}
+      </form>
+      <form id="updateParticipantStatusForm" method="post">
+        {% csrf_token %}
+        <div>
+          <label class="participant-status" id="id_participant_num">Participant Number:</label>
+          {{ participant_form.participant_number }}
+      </div>
+        <p class="error">{{ participant_form.errors.participant_number }}</p>
+        <button type='submit' id="submitParticipantButton">Submit New Participant</button>
+
+      
+      </form>
+    
+      
+      <button id="navigateButton">Add Mandatory Questionaire</button>
+    </a>
+    
+  </div>
+        </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    // JavaScript function to check if participant already exists
+    window.onload = function() {
+        const participantAlreadyExists = "{{ participant_already_exists }}";
+
+        if (participantAlreadyExists === "True") {
+            alert("This participant number has already been used, please select another one");
+        }
+    }
+
+    document.getElementById('navigateButton').addEventListener('click', function() {
+        const participantNumber = document.getElementById('id_participant_number').value;
+        const cleanedParticipantNumber = participantNumber.replace('-', '0');
+        console.log("Participant Number:", participantNumber);
+
+        // Check if the first 2 digits are not '10', '20', or '30'
+        if (!['10', '20', '30'].includes(cleanedParticipantNumber.slice(0, 2))) {
+            alert('Incorrect participant number format');
+        } else {
+            //alert('Participant number format is correct');
+            const newURL = `/DataEntry/add_mandatory_questionaire/${cleanedParticipantNumber}/`;
+            if (newURL) {
+            window.location.href = newURL;
+          } else{
+            console.error("newURL is not defined or empty.");
+          }
+        }
+    });
+</script>
+
+
+
+</html>
+
+<p>       const newUrl = `/DataEntry/add_mandatory_questionaire/${cleanedParticipantNumber}/`;
+  window.location.href = newUrl;</p>
+
+
+{%endblock%}

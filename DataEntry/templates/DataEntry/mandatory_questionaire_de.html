@@ -1,0 +1,407 @@
+<html lang="en">
+
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>IDEAL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- jQuery UI library -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- Additional jQuery UI styles (optional) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    #dataentry{
+        background-color: white;
+        padding: 40px;
+    }
+
+    #lab_processing3{
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+
+        opacity: 1.0;
+    }
+    #lab_processing {
+        position: relative;
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+        opacity: 1.0;
+        border-radius: 10px; /* Adjust the radius as desired */
+    }
+
+    #lab_processing::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        z-index: -1;
+        box-shadow: 0 0 20px 20px white inset;
+        border-radius: 10px;
+        opacity: 0.5;
+    }
+    #main{
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 100px;
+
+    }
+
+    #reciva_entry {
+        padding-bottom: 10px;
+    }
+    .tab-content input[type="checkbox"] {
+    width: 15px;
+    margin-right: 15px; /* Adjust the spacing between checkbox and label */
+    }
+    .testing1{
+        display: flex;
+        align-items: center;
+    }
+    .form-group2 {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-group3 {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .line-through{
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+    .bold-and-large{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-field {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .btn {
+        float: right;
+
+    }
+    .invisible-label {
+        color: transparent;
+  }
+    .checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+  }
+    .yes_no {
+        font-weight: bold;
+    }
+    .label-binary {
+        width: 255px;
+    }
+    .entry { 
+        width:70px;
+    }
+</style>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<div id="main">
+    <div id="lab_processing" class="dataentry">
+        <a href=" static/IDEAL_Optional_Questionnaire_Clean_JD_02_May_2023.docx" download>Download Filled Form</a>
+        <a href="{% url 'add_mandatory_questionaire_de' participant_id %}?generate_pdf=true">Generate PDF</a>
+        <input  type="file" name="Upload PDF">
+        <div>
+            <form method="POST" action="" class="in-line">
+                {% csrf_token %}
+                <input type="hidden" name="participant_num" value="{{ participant_id }}">
+                <p class="bold-and-large">PART D. Second-Hand Smoke Exposure</p>
+                <div>
+                    <label>1. In your lifetime, you have considered your second-hand smoke exposure to be: </label>
+                    {{ form.second_hand_smoke }}
+                </div>
+                <div>
+                    <label >2. At any time in your life, have you been around someone else's tobacco smoke at least once per week for 1 year or longer?  </label>
+                        <div class="form-check-inline">
+                        {{ form.second_hand_1yr.0 }}
+                        </div>
+                        <div class="form-check-inline">
+                        {{ form.second_hand_1yr.1 }}
+                        </div>
+                </div>
+                <div>
+                    <label >2. (b) Where have you been around someone elses tobacco smoke?</label>
+                    <label class='yes_no'></label>
+                    <div class="form-check-inline">
+                    {{ form.second_hand_home.1 }}
+                    </div>
+                    <label class='yes_no' >Exposure at Work:</label>
+                    {{ form.second_hand_work }}
+                    <label class='yes_no'  >Exposure during Leisure Activities:</label>
+                    {{ form.second_hand_leisure }}
+                </div>
+                <div>
+                    <label for="id_second_hand_daily in-line">(c) On average, how often were you around other peoples smoke?</label>
+                    <label class='yes_no' ></label>
+                        
+                            {{ form.second_hand_daily.0 }}
+                            {{ form.second_hand_daily.1 }}
+                            {{ form.second_hand_daily.2 }}
+                            {{ form.second_hand_daily.3 }}
+                        
+                </div>
+                <div>
+                    <label >(d) On average, how many hours of exposure did you encounter for each day you were exposed?  </label>
+                    <label class='yes_no' > &lt;2 hours</label>
+                        <div class="form-check-inline">
+                            {{ form.second_hand_2hrs }}
+                        </div>
+                    <label class='yes_no'>2-4 hours</label>
+                        {{ form.second_hand24hrs }}
+                    <label class='yes_no' >4-6 hours</label>
+                        {{ form.second_hand_46hrs }}
+                    <label class='yes_no'>&gt; 6 hours</label>
+                        {{ form.second_hand_6hrs }}
+                </div>
+                <div>
+                    <label >(e) How many years were you exposed in total?</label>
+                        {{ form.second_hand_yrs }}
+                </div>
+                <div>
+                    <label >3. As a child and youth (18 years and under), was your exposure to secondhand smoke at home:</label>
+                    {{ form.second_hand_youth }}
+                </div>
+                <p class="bold-and-large">PART E. Alcohol</p>
+                <div>
+                    <label>1.	Have you ever had a drink of alcohol at least once per week for 1 year or longer?</label>
+                    <div class="form-check-inline">
+                        {{ form.alcohol.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ form.alcohol.1 }}
+                    </div>
+                </div>
+                <div>
+                    <label >From Age (years)</label>
+                        {{ form.alcohol_from_age1 }}
+                    <label >To Age (years)</label>
+                        {{ form.alcohol_to_age1 }}
+                    <label >Beer (cans or bottles/week)</label>
+                        {{ form.alcohol_beer1 }}
+                    <label >Wine (6 ounce glasses/week)</label>
+                        {{ form.alcohol_wine1 }}
+                    <label >Spirit or hard liquor (ounces/week)</label>
+                        {{ form.alcohol_liquor1 }}
+                </div>
+                
+                <div>
+                    <label >From Age (years)</label>
+                    {{ form.alcohol_from_age2 }}
+                    <label >To Age (years)</label>
+                    {{ form.alcohol_to_age2 }}
+                    <label >Beer (cans or bottles/week)</label>
+                    {{ form.alcohol_beer2 }}
+                    <label >Wine (6 ounce glasses/week)</label>
+                    {{ form.alcohol_wine2 }}
+                    <label >Spirit or hard liquor (ounces/week)</label>
+                    {{ form.alcohol_liquor2 }}
+                </div>
+                
+                <div>
+                    <label >From Age (years)</label>
+                    {{ form.alcohol_from_age3 }}
+                    <label>To Age (years)</label>
+                    {{ form.alcohol_to_age3 }}
+                    <label >Beer (cans or bottles/week)</label>
+                    {{ form.alcohol_beer3 }}
+                    <label >Wine (6 ounce glasses/week)</label>
+                    {{ form.alcohol_wine3 }}
+                    <label>Spirit or hard liquor (ounces/week)</label>
+                    {{ form.alcohol_liquor3 }}
+                </div>
+                
+                <div>
+                    <label >From Age (years)</label>
+                    {{ form.alcohol_from_age4 }}
+                    <label >To Age (years)</label>
+                    {{ form.alcohol_to_age4 }}
+                    <label>Beer (cans or bottles/week)</label>
+                    {{ form.alcohol_beer4 }}
+                    <label>Wine (6 ounce glasses/week)</label>
+                    {{ form.alcohol_wine4 }}
+                    <label>Spirit or hard liquor (ounces/week)</label>
+                    {{ form.alcohol_liquor4 }}
+                </div>
+                
+                <div>
+                    <label >2. Do you currently drink alcohol at least once per week?  </label>
+                    <div class="form-check-inline">
+                        {{ form.alcohol_current.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ form.alcohol_current.1 }}
+                    </div>
+                    <label >Stopped at age:</label>
+                    {{ form.alcohol_stop_age }}
+                </div>
+            </form>
+            <form method="POST" action="" class="in-line">
+                {% csrf_token %}
+                <input type="hidden" name="participant_num" value="{{ participant_id }}">
+                <p class="bold-and-large">PART F. Medications</p>
+                <p>Are you currently using any of the following medications or drugs?</p>
+                <div>
+                    <label class="label-binary">1. Inhaled corticosteroids?</label>
+                    <div class="form-check-inline">
+                        {{ fg_form.inhaled_drugs.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.inhaled_drugs.1 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.inhaled_drugs.2 }}
+                    </div>
+                    <label >For how long have you used it?  Days</label>
+                    {{ fg_form.inhaled_drugs_day }}
+                    <label >Months</label>
+                    {{ fg_form.inhaled_drugs_month }}
+                    <label >Years</label>
+                    {{ fg_form.inhaled_drugs_year }}
+                    <label >How often have you used this medication? </label>
+                    {{ fg_form.inhaled_drugs_freq }}
+          
+                </div>
+                <div>
+                    <label class="label-binary">2. Bronchodilators?       </label>
+                    <div class="form-check-inline">
+                        {{ fg_form.bronchodialators.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.bronchodialators.1 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.bronchodialators.2 }}
+                    </div>
+                 
+                    <label >For how long have you used it?  Days</label>
+                    {{ fg_form.bronchodialators_day }}
+                    <label >Months</label>
+                    {{ fg_form.bronchodialators_month }}
+                    <label >Years</label>
+                    {{ fg_form.bronchodialators_year }}
+                    <label >How often have you used this medication? </label>
+                    {{ fg_form.bronchodialators_freq }}
+                </div>
+                <div>
+                    <label class="label-binary" >3. Statins </label>
+                    <div class="form-check-inline">
+                        {{ fg_form.statins.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.statins.1 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.statins.2 }}
+                    </div>
+                   
+                    <label >For how long have you used it?  Days</label>
+                    {{ fg_form.statins_day }}
+                    <label >Months</label>
+                    {{ fg_form.statins_month }}
+                    <label >Years</label>
+                    {{ fg_form.statins_year }}
+                    <label >How often have you used this medication? </label>
+                    {{ fg_form.statins_freq }}
+                </div>
+                <div>
+                    <label class="label-binary">4. Metformin</label>
+                    <div class="form-check-inline">
+                        {{ fg_form.metformin.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.metformin.1 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.metformin.2 }}
+                    </div>
+                    <label >For how long have you used it?  Days</label>
+                    {{ fg_form.metformin_day }}
+                    <label >Months</label>
+                    {{ fg_form.metformin_month }}
+                    <label >Years</label>
+                    {{ fg_form.metformin_year }}
+                    <label >How often have you used this medication? </label>
+                    {{ fg_form.metformin_freq }}
+                </div>
+                <p class="bold-and-large">PART G. Occupational History</p>
+                <div class="form-group">
+                    <label >1. Which of these categories best describes your current working situation? </label>
+                    {{ fg_form.current_working_situation }}
+                    <label >Other - Please specify:</label>
+                    {{ fg_form.current_working_situation_other }}
+                </div>
+                <div class="form-group">
+                    <label >2. (a) In what occupation have you worked the longest during your adult life? </label>
+                    {{ fg_form.occupation_longest }}
+                    <label >(b) What were your usual activities and duties in this occupation? </label>
+                    {{ fg_form.occupation_longest_activities }}
+                    <label >(c) How many years have you worked in this occupation?  </label>
+                    {{ fg_form.occupation_longest_years }}
+                </div>
+                <div class="form-group">
+                    <label >3. Do you think you've been exposed for more than one year? </label>
+                    <div class="form-check-inline">
+                        {{ fg_form.occupation_exposure.0 }}
+                    </div>
+                    <div class="form-check-inline">
+                        {{ fg_form.occupation_exposure.1 }}
+                    </div>
+                    <label >What fumes, dusts, chemicals or agents have you been exposed to? </label>
+                    {{ fg_form.occupation_fumes }}
+                    <label >How many years have you been exposed? </label>
+                    {{ fg_form.occupation_years }}
+                </div>
+                <button type="submit" class="btn btn-primary right">Submit</button>
+                <a href="{% url 'add_exposure_form' participant_id %}" class="btn btn-primary">Save and Continue</a>
+            </br>
+                    
+            </form> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

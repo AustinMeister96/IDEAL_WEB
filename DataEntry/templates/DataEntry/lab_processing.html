@@ -1,0 +1,676 @@
+{% extends 'base.html' %}
+{%block title%}Lab processing{%endblock%}
+{%block content%}
+{% load crispy_forms_tags %}
+
+
+<head>
+    <title>Lab Processing Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<style>
+    #lab_processing3{
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+
+        opacity: 1.0;
+    }
+    #lab_processing {
+        position: relative;
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+        opacity: 1.0;
+        border-radius: 10px; /* Adjust the radius as desired */
+    }
+
+    #lab_processing::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        z-index: -1;
+        box-shadow: 0 0 20px 20px white inset;
+        border-radius: 10px;
+        opacity: 0.5;
+    }
+    #main{
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 100px;
+
+    }
+
+    #reciva_entry {
+        padding-bottom: 10px;
+    }
+    .tab-content input[type="checkbox"] {
+    width: 15px;
+    margin-right: 15px; /* Adjust the spacing between checkbox and label */
+    }
+    .testing1{
+        display: flex;
+        align-items: center;
+    }
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-field {
+        display: flex;
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .label {
+        width: 250px;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script>
+
+</script>
+<div id="main">
+    <div id="lab_processing">
+        <body id="body">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-toggle="tab" href="#reciva" data-bs-toggle="tab" >RECIVA</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#room-air" data-bs-toggle="tab" >Room Air</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#casper" data-bs-toggle="tab" >Casper</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="reciva" class="tab-pane fade show active" role="tabpanel">
+                    <form id="form1" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="{{ form.reciva.participant_num.id_for_label }}"></label>
+                                {{ form.reciva.participant_num }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label" for="id_reciva_tennax">Tennax:</label>
+                                {{ form.reciva_tennax }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_barcode">Barcode:</label>
+                                {{ form.reciva_barcode }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_collection_date">Collection Date:</label>
+                                {{ form.reciva_collection_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_time_since_collection">Time Since Col:</label>
+                                {{ form.reciva_time_since_collection }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_collection_site">Col Site:</label>
+                                {{ form.reciva_collection_site }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_ship_date">Ship Date:</label>
+                                {{ form.reciva_ship_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_received_date">Received Date:</label>
+                                {{ form.reciva_received_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_shipping_method">Ship Method:</label>
+                                {{ form.reciva_shipping_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.brush_teeth.id_for_label }}">Sample Stored:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_sample_stored.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_sample_stored.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_storage_location">Sample Storage Location:</label>
+                                {{ form.reciva_sample_storage_location }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label"  for="id_reciva_sample_storage_temperature">Sample Storage Temperature:</label>
+                                {{ form.reciva_sample_storage_temperature }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_time_in_storage">Time in Storage:</label>
+                                {{ form.reciva_time_in_storage }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.reciva_purge.id_for_label }}">Purge:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_purge.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_purge.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_purge_gas">Purge Gas:</label>
+                                {{ form.reciva_purge_gas }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_purge_gas_flow">Purge Gas Flow:</label>
+                                {{ form.reciva_purge_gas_flow }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_purge_gas_duration">Purge Gas Duration:</label>
+                                {{ form.reciva_purge_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.reciva_spiked.id_for_label }}">Spiked:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_spiked.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_spiked.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_istd_used">ISTD Used:</label>
+                                {{ form.reciva_istd_used }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_istd_vol">ISTD Volume:</label>
+                                {{ form.reciva_istd_vol }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_istd_applied">ISTD Applied:</label>
+                                {{ form.reciva_istd_applied }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_cslr_gas">CSLR Gas:</label>
+                                {{ form.reciva_cslr_gas }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_cslr_gas_flow">CSLR Gas Flow:</label>
+                                {{ form.reciva_cslr_gas_flow }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_cslr_gas_duration">CSLR Gas Duration:</label>
+                                {{ form.reciva_cslr_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.reciva_sample_run.id_for_label }}">Sample Run:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_sample_run.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.reciva_sample_run.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_run_date">Sample Run Date:</label>
+                                {{ form.reciva_sample_run_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_run_instrument">Sample Run Instrument:</label>
+                                {{ form.reciva_sample_run_instrument }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_td_method">Sample TD Method:</label>
+                                {{ form.reciva_sample_td_method }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_ms_method">Sample MS Method:</label>
+                                {{ form.reciva_sample_ms_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_sample_filename">Sample Filename:</label>
+                                {{ form.reciva_sample_filename }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label" for="id_reciva_sample_file_location">Sample File Location:</label>
+                                {{ form.reciva_sample_file_location }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label" for="id_reciva_sample_visual_inspection">Sample Visual Inspection:</label>
+                                {{ form.reciva_sample_visual_inspection }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_reciva_notes">Notes:</label>
+                                {{ form.reciva_notes }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <div id="room-air" class="tab-pane fade" role="tabpanel">
+                    <form id="form1" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"for="{{ form.room_air.participant_num.id_for_label }}">Participant Number:</label>
+                                {{ form.room_air.participant_num }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"for="id_room_air_tennax">Tennax:</label>
+                                {{ form.room_air_tennax }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label"for="id_room_air_barcode">Barcode:</label>
+                                {{ form.room_air_barcode }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label"for="id_room_air_collection_date">Collection Date:</label>
+                                {{ form.room_air_collection_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"for="id_room_air_time_since_collection">Time Since Col:</label>
+                                {{ form.room_air_time_since_collection }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label" for="id_room_air_collection_site">Col Site:</label>
+                                {{ form.room_air_collection_site }}
+                            </div>
+                            <div class="form-field">
+                                <label class="label" for="id_room_air_ship_date">Ship Date:</label>
+                                {{ form.room_air_ship_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_received_date">Received Date:</label>
+                                {{ form.room_air_received_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_shipping_method">Ship Method:</label>
+                                {{ form.room_air_shipping_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.brush_teeth.id_for_label }}">Sample Stored:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_sample_stored.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_sample_stored.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_storage_location">Sample Storage Location:</label>
+                                {{ form.room_air_sample_storage_location }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_storage_temperature">Sample Storage Temperature:</label>
+                                {{ form.room_air_sample_storage_temperature }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_time_in_storage">Time in Storage:</label>
+                                {{ form.room_air_time_in_storage }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.room_air_purge.id_for_label }}">Purge:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_purge.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_purge.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_purge_gas">Purge Gas:</label>
+                                {{ form.room_air_purge_gas }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_purge_gas_flow">Purge Gas Flow:</label>
+                                {{ form.room_air_purge_gas_flow }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_purge_gas_duration">Purge Gas Duration:</label>
+                                {{ form.room_air_purge_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.room_air_spiked.id_for_label }}">Spiked:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_spiked.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_spiked.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_istd_used">ISTD Used:</label>
+                                {{ form.room_air_istd_used }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_istd_vol">ISTD Volume:</label>
+                                {{ form.room_air_istd_vol }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_istd_applied">ISTD Applied:</label>
+                                {{ form.room_air_istd_applied }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_cslr_gas">CSLR Gas:</label>
+                                {{ form.room_air_cslr_gas }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_cslr_gas_flow">CSLR Gas Flow:</label>
+                                {{ form.room_air_cslr_gas_flow }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_cslr_gas_duration">CSLR Gas Duration:</label>
+                                {{ form.room_air_cslr_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.room_air_sample_run.id_for_label }}">Sample Run:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_sample_run.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.room_air_sample_run.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_run_date">Sample Run Date:</label>
+                                {{ form.room_air_sample_run_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_run_instrument">Sample Run Instrument:</label>
+                                {{ form.room_air_sample_run_instrument }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_td_method">Sample TD Method:</label>
+                                {{ form.room_air_sample_td_method }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_ms_method">Sample MS Method:</label>
+                                {{ form.room_air_sample_ms_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_filename">Sample Filename:</label>
+                                {{ form.room_air_sample_filename }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_file_location">Sample File Location:</label>
+                                {{ form.room_air_sample_file_location }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_sample_visual_inspection">Sample Visual Inspection:</label>
+                                {{ form.room_air_sample_visual_inspection }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_room_air_notes">Notes:</label>
+                                {{ form.room_air_notes }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <div id="casper" class="tab-pane fade" role="tabpanel">
+                    <form id="form1" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.casper.participant_num.id_for_label }}">Participant Number:</label>
+                                {{ form.casper.participant_num }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_tennax">Tennax:</label>
+                                {{ form.casper_tennax }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_barcode">Barcode:</label>
+                                {{ form.casper_barcode }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_collection_date">Collection Date:</label>
+                                {{ form.casper_collection_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_time_since_collection">Time Since Col:</label>
+                                {{ form.casper_time_since_collection }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_collection_site">Col Site:</label>
+                                {{ form.casper_collection_site }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_ship_date">Ship Date:</label>
+                                {{ form.casper_ship_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_received_date">Received Date:</label>
+                                {{ form.casper_received_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_shipping_method">Ship Method:</label>
+                                {{ form.casper_shipping_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.brush_teeth.id_for_label }}">Sample Stored:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_sample_stored.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_sample_stored.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_storage_location">Sample Storage Location:</label>
+                                {{ form.casper_sample_storage_location }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_storage_temperature">Sample Storage Temperature:</label>
+                                {{ form.casper_sample_storage_temperature }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_time_in_storage">Time in Storage:</label>
+                                {{ form.casper_time_in_storage }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.casper_purge.id_for_label }}">Purge:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_purge.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_purge.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_purge_gas">Purge Gas:</label>
+                                {{ form.casper_purge_gas }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_purge_gas_flow">Purge Gas Flow:</label>
+                                {{ form.casper_purge_gas_flow }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"  for="id_casper_purge_gas_duration">Purge Gas Duration:</label>
+                                {{ form.casper_purge_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.casper_spiked.id_for_label }}">Spiked:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_spiked.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_spiked.1 }}
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label class="label"  for="id_casper_istd_used">ISTD Used:</label>
+                                {{ form.casper_istd_used }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_istd_vol">ISTD Volume:</label>
+                                {{ form.casper_istd_vol }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_istd_applied">ISTD Applied:</label>
+                                {{ form.casper_istd_applied }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_cslr_gas">CSLR Gas:</label>
+                                {{ form.casper_cslr_gas }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_cslr_gas_flow">CSLR Gas Flow:</label>
+                                {{ form.casper_cslr_gas_flow }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_cslr_gas_duration">CSLR Gas Duration:</label>
+                                {{ form.casper_cslr_gas_duration }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="{{ form.casper_sample_run.id_for_label }}">Sample Run:</label>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_sample_run.0 }}
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    {{ form.casper_sample_run.1 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_run_date">Sample Run Date:</label>
+                                {{ form.casper_sample_run_date }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_run_instrument">Sample Run Instrument:</label>
+                                {{ form.casper_sample_run_instrument }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_td_method">Sample TD Method:</label>
+                                {{ form.casper_sample_td_method }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"  for="id_casper_sample_ms_method">Sample MS Method:</label>
+                                {{ form.casper_sample_ms_method }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_filename">Sample Filename:</label>
+                                {{ form.casper_sample_filename }}
+                            </div>
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_sample_file_location">Sample File Location:</label>
+                                {{ form.casper_sample_file_location }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="label"  for="id_casper_sample_visual_inspection">Sample Visual Inspection:</label>
+                                {{ form.casper_sample_visual_inspection }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label  class="label" for="id_casper_notes">Notes:</label>
+                                {{ form.casper_notes }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#myTabs a').click(function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
+
+</html>
+
+{%endblock%}

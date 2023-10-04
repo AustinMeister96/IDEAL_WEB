@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  #dataentry{
+      background-color: white;
+      padding: 40px;
+  }
+
+  #lab_processing3{
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+
+      opacity: 1.0;
+  }
+  #lab_processing {
+      position: relative;
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+      opacity: 1.0;
+      border-radius: 10px; /* Adjust the radius as desired */
+  }
+
+  #lab_processing::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+      box-shadow: 0 0 20px 20px white inset;
+      border-radius: 10px;
+      opacity: 0.5;
+  }
+  #main{
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 100px;
+
+  }
+
+  #reciva_entry {
+      padding-bottom: 10px;
+  }
+  .tab-content input[type="checkbox"] {
+  width: 15px;
+  margin-right: 15px; /* Adjust the spacing between checkbox and label */
+  }
+  .testing1{
+      display: flex;
+      align-items: center;
+  }
+  .form-group2 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-group3 {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .form-group {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .line-through{
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+  }
+  .bold-and-large{
+      font-weight: bold;
+      font-size: 20px;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-field {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .btn {
+      float: right;
+
+  }
+  .label-class {
+  display: inline-block;
+  width: 200px;
+  }
+  .label-class2 {
+  display: inline-block;
+  width: 180 px;
+  }
+  .in-line {
+        text-align: right;
+    }
+
+    .in-line input[type="text"] {
+        width: 200px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .in-line button {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .lower-marg {
+        margin-bottom: 20px;
+    }
+</style>
+<script>
+    function addInclusion() {
+        var participantId = document.getElementById("search").value;
+        var url = "/DataEntry/add_inclusion/" + encodeURIComponent(participantId);
+        window.location.href = url;
+    }
+</script>
+
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="lab_processing" class="dataentry">
+        
+        <p class="bold-and-large">Protocol Deviations</p>
+        <div class="container">
+            <head>
+                <style>
+                    table {
+                        width: 80%; /* Adjust the table width as needed */
+                        margin: auto;
+                        border-collapse: collapse;
+                    }
+            
+                    table, th, td {
+                        border: 1px solid black;
+                        padding: 8px;
+                    }
+            
+                    th {
+                        background-color: #f2f2f2;
+                    }
+            
+                    .add-row-button {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+            
+                <button class="add-row-button" onclick="addRow()">Add Row</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type of Deviation</th>
+                            <th>Date of Deviation</th>
+                            <th>Clinical Staff Notified</th>
+                            <th>Comments</th>
+                            <th>Upload PDFs</th>
+                            <th>Upload Files</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Add rows with input boxes -->
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Type of Deviation"></td>
+                            <td><input type="date"></td>
+                            <td><input type="text" placeholder="Clinical Staff Notified"></td>
+                            <td><input type="text" placeholder="Comments"></td>
+                            <td><button onclick="openPDFFileManager()">Upload PDF</button></td>
+                            <td><button onclick="openFileManager()">Upload File</button></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                        
+                    </tbody>
+                </table>
+                
+                <!-- JavaScript functions to handle file uploads -->
+                <script>
+                    function openPDFFileManager() {
+                        // Replace this function with code to open your PDF file manager
+                        console.log("Opening PDF file manager...");
+                    }
+                
+                    function openFileManager() {
+                        // Replace this function with code to open your file manager for other files
+                        console.log("Opening file manager...");
+                    }
+                </script>
+                
+                <!-- Add Row Button -->
+                <button class="add-row-button" onclick="addRow()">Add Row</button>
+                
+                <!-- JavaScript function to add a new row to the table -->
+                <script>
+                    function addRow() {
+                        var table = document.querySelector("table");
+                        var newRow = table.insertRow(-1);
+                
+                        // Add input boxes to the new row
+                        for (var i = 0; i < 4; i++) {
+                            var newCell = newRow.insertCell(i);
+                            var newInput = document.createElement("input");
+                            newInput.type = "text";
+                            newCell.appendChild(newInput);
+                        }
+                
+                        // Add buttons to the new row (replace the onclick functions with your actual functions)
+                        var uploadPDFCell = newRow.insertCell(4);
+                        var uploadPDFButton = document.createElement("button");
+                        uploadPDFButton.textContent = "Upload PDF";
+                        uploadPDFButton.onclick = openPDFFileManager;
+                        uploadPDFCell.appendChild(uploadPDFButton);
+                
+                        var uploadFileCell = newRow.insertCell(5);
+                        var uploadFileButton = document.createElement("button");
+                        uploadFileButton.textContent = "Upload File";
+                        uploadFileButton.onclick = openFileManager;
+                        uploadFileCell.appendChild(uploadFileButton);
+                    }
+                </script>
+                
+        </div>
+    </div>
+    
+    <div>
+      
+    </div>
+
+  </div>
+
+</html>
+
+{%endblock%}

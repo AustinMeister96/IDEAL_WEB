@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<style>
+    #div-back{
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 5px;
+    }
+</style>
+<p> test file with updating data</p>
+{% if submitted %}
+Participant successfully added!
+{% else %}
+
+{% if is_authenticated %}
+    <p>Welcome, authenticated user!</p>
+{% else %}
+    <p>Please log in to view this content.</p>
+{% endif %}
+<div class ='div-back'>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+</div>
+
+    {% endif %}
+{% endblock %}
+
+
+

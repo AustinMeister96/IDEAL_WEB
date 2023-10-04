@@ -1,0 +1,692 @@
+
+        {% csrf_token %}
+        <div>
+            <label for="id_int_std_sln">Int Std Sln:</label>
+            {{ form.int_std_sln }}
+            <label for="id_int_std_sln_vol">Int Std Sln Vol:</label>
+            {{ form.int_std_sln_vol }}
+        </div>
+        <div>
+            <label for="id_reciva_purge">Reciva Purge:</label>
+            {{ form.reciva_purge }}
+        </div>
+        <div>
+            <label for="id_room_air_purge">Room Air Purge:</label>
+            {{ form.room_air_purge }}
+        </div>
+        <div>
+            <label for="id_casper_purge">Casper Purge:</label>
+            {{ form.casper_purge }}
+        </div>
+        <div>
+            <label for="id_reciva_spiked">Reciva Spiked:</label>
+            {{ form.reciva_spiked }}
+        </div>
+        <div>
+            <label for="id_room_air_spiked">Room Air Spiked:</label>
+            {{ form.room_air_spiked }}
+        </div>
+        <div>
+            <label for="id_casper_spiked">Casper Spiked:</label>
+            {{ form.casper_spiked }}
+        </div>
+        <div>
+            <label for="id_reciva_storage">Reciva Storage:</label>
+            {{ form.reciva_storage }}
+        </div>
+        <div>
+            <label for="id_room_air_storage">Room Air Storage:</label>
+            {{ form.room_air_storage }}
+        </div>
+        <div>
+            <label for="id_casper_storage">Casper Storage:</label>
+            {{ form.casper_storage }}
+        </div>
+        <div>
+            <label for="id_reciva_caps">Reciva Caps:</label>
+            {{ form.reciva_caps }}
+        </div>
+        <div>
+            <label for="id_room_air_caps">Room Air Caps:</label>
+            {{ form.room_air_caps }}
+        </div>
+        <div>
+            <label for="id_casper_caps">Casper Caps:</label>
+            {{ form.casper_caps }}
+        </div>
+        <div>
+            <label for="id_sweat_location">Sweat Location:</label>
+            {{ form.sweat_location }}
+        </div>
+        <div>
+            <label for="id_sweat_caps">Sweat Caps:</label>
+            {{ form.sweat_caps }}
+        </div>
+        <div>
+            <label for="id_micro_int_std_sln">Micro Int Std Sln:</label>
+            {{ form.micro_int_std_sln }}
+        </div>
+        <div>
+            <label for="id_micro_int_std_vol">Micro Int Std Vol:</label>
+            {{ form.micro_int_std_vol }}
+        </div>
+        <div>
+            <label for="id_micro_hs_left">Micro HS Left:</label>
+            {{ form.micro_hs_left }}
+        </div>
+        <div>
+            <label for="id_micro_hs_right">Micro HS Right:</label>
+            {{ form.micro_hs_right }}
+        </div>
+        <div>
+            <label for="id_micro_extraction">Micro Extraction:</label>
+            {{ form.micro_extraction }}
+        </div>
+        <div>
+            <label for="id_micro_incubation">Micro Incubation:</label>
+            {{ form.micro_incubation }}
+        </div>
+        <div>
+            <label for="id_hs_blk_tennax">HS Blk Tennax:</label>
+            {{ form.hs_blk_tennax }}
+        </div>
+        <div>
+            <label for="id_hs_blk_micro_num">HS Blk Micro Num:</label>
+            {{ form.hs_blk_micro_num }}
+        </div>
+        <div>
+            <label for="id_hs_blk_purge">HS Blk Purge:</label>
+            {{ form.hs_blk_purge }}
+        </div>
+        <div>
+            <label for="id_hs_blk_storage">HS Blk Storage:</label>
+            {{ form.hs_blk_storage }}
+        </div>
+        <div>
+            <label for="id_hs_blk_caps">HS Blk Caps:</label>
+            {{ form.hs_blk_caps }}
+        </div>
+        <div>
+            <label for="id_hs_blk_wbrush_tennax">HS Blk Wbrush Tennax:</label>
+            {{ form.hs_blk_wbrush_tennax }}
+        </div>
+        <div>
+            <label for="id_hs_blk_wbrush_micro_num">HS Blk Wbrush Micro Num:</label>
+            {{ form.hs_blk_wbrush_micro_num }}
+        </div>
+        <div>
+            <label for="id_hs_blk_wbrush_purge">HS Blk Wbrush Purge:</label>
+            {{ form.hs_blk_wbrush_purge }}
+        </div>
+        <div>
+            <label for="id_hs_blk_wbrush_storage">HS Blk Wbrush Storage:</label>
+            {{ form.hs_blk_wbrush_storage }}
+        </div>
+        <div>
+            <label for="id_hs_blk_wbrush_caps">HS Blk Wbrush Caps:</label>
+            {{ form.hs_blk_wbrush_caps }}
+        </div>
+        <div>
+            <label for="id_hs_l_tennax">HS L Tennax:</label>
+            {{ form.hs_l_tennax }}
+        </div>
+        <div>
+            <label for="id_hs_l_micro_num">HS L Micro Num:</label>
+            {{ form.hs_l_micro_num }}
+        </div>
+        <div>
+            <label for="id_hs_l_purge">HS L Purge:</label>
+            {{ form.hs_l_purge }}
+        </div>
+        <div>
+            <label for="id_hs_l_storage">HS L Storage:</label>
+            {{ form.hs_l_storage }}
+        </div>
+        <div>
+            <label for="id_hs_l_caps">HS L Caps:</label>
+            {{ form.hs_l_caps }}
+        </div>
+        <div>
+            <label for="id_hs_r_tennax">HS R Tennax:</label>
+            {{ form.hs_r_tennax }}
+        </div>
+        <div>
+            <label for="id_hs_r_micro_num">HS R Micro Num:</label>
+            {{ form.hs_r_micro_num }}
+        </div>
+        <div>
+            <label for="id_hs_r_purge">HS R Purge:</label>
+            {{ form.hs_r_purge }}
+        </div>
+        <div>
+            <label for="id_hs_r_storage">HS R Storage:</label>
+            {{ form.hs_r_storage }}
+        </div>
+        <div>
+            <label for="id_hs_r_caps">HS R Caps:</label>
+            {{ form.hs_r_caps }}
+        </div>
+        <div>
+            <label for="id_da_reciva_spiked">DA Reciva Spiked:</label>
+            {{ form.da_reciva_spiked }}
+        </div>
+        <div>
+            <label for="id_da_room_air_spiked">DA Room Air Spiked:</label>
+            {{ form.da_room_air_spiked }}
+        </div>
+        <div>
+            <label for="id_da_casper_spiked">DA Casper Spiked:</label>
+            {{ form.da_casper_spiked }}
+        </div>
+        <div>
+            <label for="id_da_reciva_storage">DA Reciva Storage:</label>
+            {{ form.da_reciva_storage }}
+        </div>
+        <div>
+            <label for="id_da_room_air_storage">DA Room Air Storage:</label>
+            {{ form.da_room_air_storage }}
+        </div>
+        <div>
+            <label for="id_da_casper_storage">DA Casper Storage:</label>
+            {{ form.da_casper_storage }}
+        </div>
+        <div>
+            <label for="id_da_reciva_caps">DA Reciva Caps:</label>
+            {{ form.da_reciva_caps }}
+        </div>
+        <div>
+            <label for="id_da_room_air_caps">DA Room Air Caps:</label>
+            {{ form.da_room_air_caps }}
+        </div>
+        <div>
+            <label for="id_da_casper_caps">DA Casper Caps:</label>
+            {{ form.da_casper_caps }}
+        </div>
+        <div>
+            <label for="id_da_sweat_location">DA Sweat Location:</label>
+            {{ form.da_sweat_location }}
+        </div>
+        <div>
+            <label for="id_da_sweat_caps">DA Sweat Caps:</label>
+            {{ form.da_sweat_caps }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_tennax">DA HS Blk Tennax:</label>
+            {{ form.da_hs_blk_tennax }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_micro_num">DA HS Blk Micro Num:</label>
+            {{ form.da_hs_blk_micro_num }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_purge">DA HS Blk Purge:</label>
+            {{ form.da_hs_blk_purge }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_storage">DA HS Blk Storage:</label>
+            {{ form.da_hs_blk_storage }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_caps">DA HS Blk Caps:</label>
+            {{ form.da_hs_blk_caps }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_wbrush_tennax">DA HS Blk Wbrush Tennax:</label>
+            {{ form.da_hs_blk_wbrush_tennax }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_wbrush_micro_num">DA HS Blk Wbrush Micro Num:</label>
+            {{ form.da_hs_blk_wbrush_micro_num }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_wbrush_purge">DA HS Blk Wbrush Purge:</label>
+            {{ form.da_hs_blk_wbrush_purge }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_wbrush_storage">DA HS Blk Wbrush Storage:</label>
+            {{ form.da_hs_blk_wbrush_storage }}
+        </div>
+        <div>
+            <label for="id_da_hs_blk_wbrush_caps">DA HS Blk Wbrush Caps:</label>
+            {{ form.da_hs_blk_wbrush_caps }}
+        </div>
+        <div>
+            <label for="id_da_hs_l_tennax">DA HS L Tennax:</label>
+            {{ form.da_hs_l_tennax }}
+        </div>
+        <div>
+            <label for="id_da_hs_l_micro_num">DA HS L Micro Num:</label>
+            {{ form.da_hs_l_micro_num }}
+        </div>
+        <div>
+            <label for="id_da_hs_l_purge">DA HS L Purge:</label>
+            {{ form.da_hs_l_purge }}
+        </div>
+        <div>
+            <label for="id_da_hs_l_storage">DA HS L Storage:</label>
+            {{ form.da_hs_l_storage }}
+        </div>
+        <div>
+            <label for="id_da_hs_l_caps">DA HS L Caps:</label>
+            {{ form.da_hs_l_caps }}
+        </div>
+        <div>
+            <label for="id_da_hs_r_tennax">DA HS R Tennax:</label>
+            {{ form.da_hs_r_tennax }}
+        </div>
+        <div>
+            <label for="id_da_hs_r_micro_num">DA HS R Micro Num:</label>
+            {{ form.da_hs_r_micro_num }}
+        </div>
+        <div>
+            <label for="id_da_hs_r_purge">DA HS R Purge:</label>
+            {{ form.da_hs_r_purge }}
+        </div>
+        <div>
+            <label for="id_da_hs_r_storage">DA HS R Storage:</label>
+            {{ form.da_hs_r_storage }}
+        </div>
+        <div>
+            <label for="id_da_hs_r_caps">DA HS R Caps:</label>
+            {{ form.da_hs_r_caps }}
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+  
+
+search form from base.html
+
+<div class="">
+    <div id="searchDiv" class="d-flex align-items-center">
+      <form id="searchForm" class="d-flex">
+        <label for="participant_name" class="form-label me-200">Participant Name</label>
+        <input type="text" class="form-control me-200" id="participant_name" placeholder="Enter participant name">
+        <label for="participant_dob" class="form-label me-200">Participant DOB</label>
+        <input type="date" class="form-control me-200" id="participant_dob" placeholder="Enter participant date of birth">
+        <label for="participant_num" class="form-label me-200">Participant Number</label>
+        <input type="text" class="form-control me-200" id="participant_num" placeholder="Enter participant number">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+      </form>
+    </div>
+  </div>
+
+
+  <form action="" method="get">
+    <input type="text" name="q" placeholder="Search participants...">
+    <input type="submit" value="Search">
+</form>
+
+
+
+
+
+
+
+
+
+
+def create_participant(request):
+    search_query = request.GET.get('search', '')
+    participant = None
+    if search_query:
+        try:
+            participant = Participant.objects.get(participant_number=search_query)
+        except Participant.DoesNotExist:
+            messages.error(request, "Participant with this number does not exist")
+    if request.method == 'POST':
+        form = ParticipantForm(request.POST, instance=participant, request=request)
+        if form.is_valid():
+            try:
+                participant = form.save()
+                if 'save_and_continue' in request.POST['action']:
+                    return redirect('add_health', participant_id=participant.participant_number)
+                elif 'save' in request.POST['action']:
+                    form = ParticipantForm(instance=participant)
+            except IntegrityError:
+                form.add_error('participant_number', 'Participant number already exists')
+                form = ParticipantForm(request.POST)  # Display the form with entered data and error messages
+    else:
+        form = ParticipantForm(instance=participant)
+    return render(request, 'add_participant.html', {'form': form, 'participant': participant})
+
+
+
+
+
+
+
+    def search(request):
+    query = request.GET.get('q')
+    if query:
+        participant = get_object_or_404(Participant, participant_number=query)
+        return redirect('participant_detail', participant_id=participant.participant_number)
+    else:
+        return render(request, 'search.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('create_participant')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+
+
+
+
+
+
+
+    class Participant(models.Model):
+    participant_number = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    birthday = models.DateField()
+    address = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        ordering = ["-participant_number"]
+    
+    def __str__(self):
+        return self.name + " " + self.last_name
+
+
+class Participant_working(models.Model):
+    participant_number = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    birthday = models.DateField()
+    date_of_birth = models.DateField()
+    address = models.CharField(max_length=255)
+
+
+
+
+</tbody>
+</table>
+
+</br>
+
+
+<table>
+<tbody>
+
+
+CT scan html form 
+
+
+    <div class="container-fluid">
+        <div class="row gx-1 justify-content-start no-gutters">
+            <div class="col-lg-1 col-md-4">
+                <div class="text-left border p-3">
+                    <div>
+                        <label class="bold" for="{{ form2.nodule_rank.id_for_label }}">Rank:</label>
+                    </div>
+                    <div>
+                        {{ form2.nodule_rank }}
+                    </div>
+                    <div>
+                        <label for="{{ form2.nodule_slice_num.id_for_label }}">Slice #:</label>
+                    </div>
+                    <div>
+                        {{ form2.nodule_slice_num }}
+                    </div>
+                    <div>
+                        <label for="{{ form2.nodule_segment.id_for_label }}">Segment:</label>
+                    </div>
+                    <div>
+                        {{ form2.nodule_segment }}
+                    </div>
+                    <div>
+                        <label for="{{ form2.nodule_cad_found.id_for_label }}">CAD Found:</label>
+                    </div>
+                    <div>
+                        {{ form2.nodule_cad_found }}
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-lg-1 col-md-4 d-flex flex-wrap no-gutters ">
+                <div class="text-left border p-3">
+                <label for="{{ form2.nodule_status.id_for_label }}">Status:</label>
+                <div> 
+                    {{ form2.nodule_status.0 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.1 }}
+                </div>
+                <div> 
+                    {{ form2.nodule_status.2 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.3 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.4 }}
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
+
+working:
+
+
+
+
+            
+<div class="container-fluid">
+    <div class="row gx-1 justify-content-start no-gutters">
+        <div class="col-lg-1 col-md-4 d-flex flex-wrap">
+            <div class="text-left border p-3">
+                <div>
+                    <label class="bold" for="{{ form2.nodule_rank.id_for_label }}">Rank:</label>
+                    {{ form2.nodule_rank }}
+                </div>
+                <div>
+                    <label for="{{ form2.nodule_slice_num.id_for_label }}">Slice #:</label>
+                    {{ form2.nodule_slice_num }}
+                </div>
+                <div>
+                    <label for="{{ form2.nodule_segment.id_for_label }}">Segment:</label>
+                    {{ form2.nodule_segment }}
+                </div>
+                <div>
+                    <label for="{{ form2.nodule_cad_found.id_for_label }}">CAD Found:</label>
+                    {{ form2.nodule_cad_found }}
+                </div>
+
+                <label class="bold-and-large" for="{{ form2.nodule_status.id_for_label }}">Status:</label>
+                <div> 
+                    {{ form2.nodule_status.0 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.1 }}
+                </div>
+                <div> 
+                    {{ form2.nodule_status.2 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.3 }}
+                </div>
+                <div>
+                    {{ form2.nodule_status.4 }}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+            <div class="col-lg-1 col-md-4 d-flex flex-wrap">
+                <div class="text-left border p-3">
+            <label class="center" for="{{ form2.nodule_radiologist_accepted.id_for_label }}">Radiologist:</label>
+            {{ form2.nodule_radiologist_accepted.0 }}
+            {{ form2.nodule_radiologist_accepted.1 }}
+            {{ form2.nodule_radiologist_accepted.2 }}
+            <label for="{{ form2.nodule_technition_accepted.id_for_label }}">Technition:</label>
+            {{ form2.nodule_technition_accepted.0 }}
+            {{ form2.nodule_technition_accepted.1 }}
+            </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="container-fluid">
+                <div class="row gx-1 justify-content-center no-gutters align-items-stretch">
+                    <div class="col-lg-1 col-md-4 d-flex flex-column flex-md-wrap">
+                        <div class="text-left">
+
+
+
+
+
+                            <div class="col-lg-1 col-md-4 d-flex flex-column flex-md-wrap">
+                                <div class="text-left">
+
+
+
+
+
+
+
+
+
+
+                                    <div class="col-lg-1 col-md-4 d-flex flex-column flex-md-wrap border p3">
+                                        <div class="text-left">
+                                            <label class="center bold-text" for="{{ form2.nodule_radiologist_accepted.id_for_label }}">Radiologist:</label>
+                                            {{ form2.nodule_radiologist_accepted.0 }}
+                                            {{ form2.nodule_radiologist_accepted.1 }}
+                                            {{ form2.nodule_radiologist_accepted.2 }}
+                                            <label class='bold-text'for="{{ form2.nodule_technition_accepted.id_for_label }}">Technician:</label>
+                                            {{ form2.nodule_technition_accepted.0 }}
+                                            {{ form2.nodule_technition_accepted.1 }}
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row gx-1 justify-content-center no-gutters align-items-stretch"></div>
+
+
+
+                                    <form  class="pink" method="post">
+                                        {% csrf_token %}
+                                        <label class="bold-and-large label-class">CAD Found</label>
+                                            <div class="justify-content-center">
+                                                <div class="container-border">
+                                                    <div class="container-fluid">
+                                                        <div class="row gx-1 justify-content-center align-items-stretch">
+                                                            <div class="col-lg-1 col-md-4 d-flex flex-column flex-md-wrap border p3">
+                                                                <div class="text-left">
+                                                                    <label class="bold-text" for="{{ form2.nodule_status.id_for_label }}">Status:</label>
+
+
+
+
+
+dfghdfghfgd
+
+
+
+<div class="justify-content-center">
+    <div class="container-border">
+        <div class="container-fluid">
+            <div class="row gx-1 justify-content-center align-items-stretch">
+                <div class="status-size d-flex flex-column flex-md-wrap black-border ">
+                    <label>COPD</label>
+                    <label>Emphysema:</label>
+                        <div>{{ form.copd_emphysema.0 }}</div>
+                        <div>{{ form.copd_emphysema.1 }}</div>
+                        <div>{{ form.copd_emphysema.2 }}</div>
+                        <div>{{ form.copd_emphysema.3 }}</div>
+                        <div>{{ form.copd_emphysema.4 }}</div>
+                </div>
+
+                <div class="interval-change-size d-flex flex-column flex-md-wrap black-border">
+                    <label>Emphysema Extent:</label>
+                    {{ form.copd_emphysema_extent.0 }}
+                    {{ form.copd_emphysema_extent.1 }}
+                    {{ form.copd_emphysema_extent.2 }}
+                    {{ form.copd_emphysema_extent.3 }}
+                    {{ form.copd_emphysema_extent.4 }}
+                    {{ form.copd_emphysema_extent.5 }}
+                </div>
+
+                <div class="col-lg-1 col-md-4 d-flex flex-column black-border">
+                    <label>Emphysema Type:</label>
+                    {{ form.copd_emphysema_type.0 }}
+                    {{ form.copd_emphysema_type.1 }}
+                    {{ form.copd_emphysema_type.2 }}
+                    {{ form.copd_emphysema_type.3 }}
+                    <label>Ditribution of Emphysema:</label>
+                    {{form.copd_emphysema_distribution.0}}
+                    {{form.copd_emphysema_distribution.1}}
+                    {{form.copd_emphysema_distribution.2}}
+                    {{form.copd_emphysema_distribution.3}}
+                </div>
+
+                <div class="axis-diameter-size d-flex flex-wrap black-border">
+                    <label>Cor Art Calc:</label>
+                    {{ form.cor_art_calc.1 }}
+                    {{ form.cor_art_calc.2 }}
+                    {{ form.cor_art_calc.3 }}
+                    {{ form.cor_art_calc.4 }}
+                    {{ form.cor_art_calc.5 }}
+                    <label>Cor Art Agatson:</label>
+                    {{ form.cor_art_agatson }}
+                </div>
+                
+                <div class="solid-size d-flex flex-wrap black-border">
+                    <label>Airways:</labeL>
+                    {{ form.airways.0 }}
+                    {{ form.airways.1 }}
+                    <label>Airways Type:</labeL>
+                    {{ form.airways_type.0 }}
+                    {{ form.airways_type.1 }}
+                    {{ form.airways_type.2 }}
+                    {{ form.airways_type.3 }}
+                    {{ form.airways_type.4 }}
+                    <label>Cat 5 Comments:<label>
+                    {{ form.cat_5_comments }}
+                        
+                </div>
+
+                <div class="location-size d-flex flex-wrap black-border">
+                    <label>Actionable Findings:</label>
+                    {{ form.cat_5_findings.0 }}
+                    {{ form.cat_5_findings.1 }}
+                    {{ form.cat_5_findings.2 }}
+
+                </div>
+                    
+                <div class="comments-size d-flex flex-wrap black-border mb1">
+
+                        
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

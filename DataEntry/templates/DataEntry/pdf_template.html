@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IDEAL Mandatory Questionaire </title>
+</head>
+<body>
+
+
+
+    <h1>IDEAL Mandatory Questionaire</h1>
+    
+    <label for="{{ form.visit_date.id_for_label }}">Visit Date: </label>{{ form.visit_date }} </br>
+    <label for="{{ form.postal_code.id_for_label }}">Postal Code: </label>{{ form.postal_code }}</br>
+    <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>{{ form.date_of_birth }}</br>
+    <label for="{{ form.current_age.id_for_label }}">Current Age: </label>{{ form.current_age }}</br>
+    <label for="{{ form.current_height.id_for_label }}">Current Height: </label> {{ form.current_height }}</br>
+    <label for="{{ form.current_height_unit.id_for_label }}">Current Height Unit: </label>{{ form.current_height_unit }}</br>
+    <label for="{{ form.current_weight.id_for_label }}">Current Weight: </label>{{ form.current_weight }}</br>
+    <label for="{{ form.current_weight_unit.id_for_label }}">Current Weight Unit: </label>{{ form.current_weight_unit }}</br>
+    <label for="{{ form.sex_birth.id_for_label }}">Sex at Birth: </label>{{ form.sex_birth }}</br>
+    <label for="{{ form.gender_identity.id_for_label }}">Gender Identity: </label>{{ form.gender_identity }}</br>
+    <label for="{{ form.gender_surgery_harmone.id_for_label }}">If Other, please specify: </label>{{form.gender_identity_other}}</br>
+    <p class="bold-and-large"> PART A. General Demographic and Health Information</p>
+    <label for="{{ form.ethnicity.id_for_label }}">1. What ethnicity do you consider yourself to be?  </label>{{ form.ethnicity }}</br>
+    <label for="{{ form.ethnicity_other.id_for_label }}">Ethnicity (Other): </label>{{ form.ethnicity_other }}</br>
+    <label for="{{ form.born_in_canada.id_for_label }}">2. Were you born in Canada? </label>{{ form.born_in_canada }}</br>
+    <label for="{{ form.year_moved_to_canada.id_for_label }}">Year Moved to Canada: </label>{{ form.year_moved_to_canada }}</br>
+    <label for="{{ form.birthplace.id_for_label }}">Birthplace: </label>{{ form.birthplace }}</br>
+    <label for="{{ form.highest_education_lvl.id_for_label }}">3. What is the highest level of education you have completed? </label>    {{ form.highest_education_lvl }}</br> 
+    <label for="{{ form.highest_education_lvl_other.id_for_label }}">Highest Education Level (Other): </label>   {{ form.highest_education_lvl_other }}</br> 
+    <p> 4. Has a physician ever told you that you have any of the following conditions?  </p>
+    <label class="yes_no" for="{{ form.copd.id_for_label }}">COPD: </label>{{ form.copd }}</br> 
+    <label class="yes_no" for="{{ form.emphysema.id_for_label }}">Emphysema: </label>{{ form.emphysema }}</br> 
+    <label class="yes_no" for="{{ form.chronic_bronchitis.id_for_label }}">Chronic Bronchitis: </label>{{ form.chronic_bronchitis }}</br> 
+    <label class="yes_no" for="{{ form.asthma.id_for_label }}">Asthma: </label>{{ form.asthma}}</br> 
+    <label class="yes_no" for="{{ form.diabetes.id_for_label }}">Diabetes: </label>{{ form.diabetes }}</br> 
+    <label class="yes_no" for="{{ form.hypertension.id_for_label }}">Hypertension: </label> {{ form.hypertension.0 }}</br> 
+    <label class="yes_no" for="{{ form.tuberculosis.id_for_label }}">Tuberculosis: </label> {{ form.tuberculosis }}</br> 
+    <label class="yes_no" for="{{ form.adult_pneumonia.id_for_label }}">Adult Pneumonia: </label>{{ form.adult_pneumonia }}</br> 
+    <label class="yes_no" for="{{ form.pulmonary_fibrosis.id_for_label }}">Pulmonary Fibrosis: </label>{{ form.pulmonary_fibrosis }}</br> 
+    <label class="yes_no" for="{{ form.hiv.id_for_label }}">HIV: </label>{{ form.hiv }}</br> 
+    <label class="yes_no" for="{{ form.long_covid.id_for_label }}">Long COVID: </label>{{ form.long_covid }}</br> </br>
+    <label  for="{{ form.personal_cancer_history.id_for_label }}">5. Do you have a personal history of cancer?: </label>{{ form.personal_cancer_history }}</br> 
+    <label for="{{ form.personal_cancer_history_youngest_age.id_for_label }}">Personal Cancer History (Youngest Age): </label>{{ form.personal_cancer_history_youngest_age }}</br> 
+    <label for="{{ form.personal_history_cancer_type.id_for_label }}">Personal History Cancer Type: </label>{{ form.personal_history_cancer_type }}</br> 
+    <p class="bold-and-large"> PART B. Family History</p>
+    <label for="{{ form.num_sisters.id_for_label }}">1. Number of Sisters: </label>{{ form.num_sisters }}</br> 
+    <label for="{{ form.num_brothers.id_for_label }}">Number of Brothers: </label>{{ form.num_brothers }}</br> 
+    <label for="{{ form.num_half_sisters.id_for_label }}">Number of Half Sisters: </label>{{ form.num_half_sisters }}</br> 
+    <label for="{{ form.num_half_brothers.id_for_label }}">Number of Half Brothers: </label>{{ form.num_half_brothers }}</br> 
+    <label for="{{ form.children.id_for_label }}">2. How many children do you have?:  </label>{{ form.children }}</br>
+    <label for="{{ form.biological_relatives_cancer.id_for_label }}">3. Biological Relatives with Cancer: </label>{{ form.biological_relatives_cancer }}</br>
+
+</body>
+</html>

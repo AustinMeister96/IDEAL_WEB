@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  #dataentry{
+      background-color: white;
+      padding: 40px;
+  }
+
+  #lab_processing3{
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+
+      opacity: 1.0;
+  }
+  #lab_processing {
+      position: relative;
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+      opacity: 1.0;
+      border-radius: 10px; /* Adjust the radius as desired */
+  }
+
+  #lab_processing::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+      box-shadow: 0 0 20px 20px white inset;
+      border-radius: 10px;
+      opacity: 0.5;
+  }
+  #main{
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 100px;
+
+  }
+
+  #reciva_entry {
+      padding-bottom: 10px;
+  }
+  .tab-content input[type="checkbox"] {
+  width: 15px;
+  margin-right: 15px; /* Adjust the spacing between checkbox and label */
+  }
+  .testing1{
+      display: flex;
+      align-items: center;
+  }
+  .form-group2 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-group3 {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .form-group {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .line-through{
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+  }
+  .bold-and-large{
+      font-weight: bold;
+      font-size: 20px;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-field {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .btn {
+      float: right;
+
+  }
+  .label-class {
+  display: inline-block;
+  width: 160px;
+  }
+  .label-class2 {
+  display: inline-block;
+  width: 180 px;
+  }
+  .div-container {
+        flex-direction: row;
+        padding-right: 35px;
+
+    }
+    .div-right{
+        padding-right: 25px;
+    }
+    .yes_no{
+        font-weight: bold;
+        
+        
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="lab_processing" class="dataentry">
+    <p class="bold-and-large">Breath Collection</p>
+
+    
+    <form method="POST" action="" class="in-line">
+        {% csrf_token %}
+        <input type="hidden" name="participant_num" value="{{ participant_id }}">
+        <div class="in-line">
+            <div class="div-right">
+
+            <label class="label-class">{{ form.collection_date.label_tag }}</label>
+            {{ form.collection_date }}
+        </div>
+        <div>
+            <label class="label-class">{{ form.collection_time.label_tag }}</label>
+            {{ form.collection_time }}
+        </div>
+        </div>
+    
+        <div>
+            <div>
+
+                <label class="label-class">{{ form.collected_by.label_tag }}</label>
+                {{ form.collected_by }}
+                <label class="label-class">{{ form.location.label_tag }}</label>
+                {{ form.location }}
+            </div>
+
+
+        <label for="{{ form.brush_teeth.id_for_label }}">Brush Teeth:</label>
+            <div class="form-check form-check-inline">
+            {{ form.brush_teeth.0 }}
+            
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.brush_teeth.1 }}
+            <div style=" margin-left: 25px;">
+                <label class="label-class">{{ form.brush_teeth_time.label_tag }}
+        </div>
+            <div style=" margin-left: 25px;">
+            {{ form.brush_teeth_time }}
+            </div>
+        </div>
+    
+        <div class="div-container ">
+            <label class='yes_no'for="{{ form.mouthwash.id_for_label }}">Mouthwash:</label>
+            <div class="form-check form-check-inline">
+            {{ form.mouthwash.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.mouthwash.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.mouthwash_time.id_for_label }}">Face Cream:</label>
+
+            <div class="form-check form-check-inline">
+            {{ form.face_cream.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.face_cream.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.face_cream_time.id_for_label }}">Perfume / Cologne:</label>
+            <div class="form-check form-check-inline">
+            {{ form.perfume_cologne.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.perfume_cologne.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.perfume_cologne_time.id_for_label }}">Deodorant:</label>
+            <div class="form-check form-check-inline">
+            {{ form.deodorant.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.deodorant.1 }}
+            </div>
+
+            <label class='yes_no' for="{{ form.deodorant_time.id_for_label }}">Smoke Exposure:</label>
+            <div class="form-check form-check-inline">
+            {{ form.smoke_exposure.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.smoke_exposure.1 }}
+            </div>
+            <label class="label-class" for="id_smoke_exposure_type">Smoke Exposure Type:</label>
+            {{ form.smoke_exposure_type }}
+            </div>
+            <div>
+            <label class='yes_no' for="id_pneumonia">Pneumonia:</label>
+            {{ form.pneumonia.0 }}
+            {{ form.pneumonia.1 }}
+
+            <label class='yes_no' for="id_inhaled_medication">Inhaled Medication:</label>
+            {{ form.inhaled_medication.0 }}
+            {{ form.inhaled_medication.1 }}
+            <label for="id_inhaled_medication_name">Inhaled Medication Name:</label>
+            {{ form.inhaled_medication_name }}
+            <label for="id_inhaled_medication_brand">Inhaled Medication Brand:</label>
+            {{ form.inhaled_medication_brand }}
+            <label for="id_inhaled_medication_type">Inhaled Medication Type:</label>
+            {{ form.inhaled_medication_type }}
+        </div>
+        <div>
+            <label class='yes_no'for="{{ form.smoke_exposure_time.id_for_label }}">Fuel Car:</label>
+            <div class="form-check form-check-inline">
+            {{ form.fuel_car.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.fuel_car.1 }}
+            </div>
+            <label class="label-class">Arrival Type:</label>
+            {{ form.arrival_type }}
+        </div>
+        <div>
+            <label class='yes_no' for="id_hrt_menopause">HRT Menopause:</label>
+            {{ form.hrt_menopause.0 }}
+            {{ form.hrt_menopause.1 }}
+            <label for="id_grt_menopause_duration">GRT Menopause Duration:</label>
+            {{ form.grt_menopause_duration }}
+            <label class='yes_no' for="id_menopausal">Menopausal:</label>
+            {{ form.menopausal.0 }}
+            {{ form.menopausal.1 }}
+            <label class='yes_no' for="id_birth_control">Birth Control:</label>
+            {{ form.birth_control.0 }}
+            {{ form.birth_control.1 }}
+            <label for="id_birth_control_duration">Birth Control Duration:</label>
+            {{ form.birth_control_duration }}
+        </div>
+        <div>
+            <label class="label-class">{{ form.notes.label_tag }}</label>
+            {{ form.notes }}
+        </div>
+        <div>
+            <label class="label-class">{{ form.last_meal.label_tag }}</label>
+            {{ form.last_meal }}
+            <label class="label-class">{{ form.last_meal_time.label_tag }}</label>
+            {{ form.last_meal_time }}
+        </div>
+    
+        <div>
+            <label class="label-class">{{ form.last_drink.label_tag }}</label>
+            {{ form.last_drink }}
+            <label class="label-class">{{ form.last_drink_time.label_tag }}</label>
+            {{ form.last_drink_time }}
+        </div>
+    
+        <div class="div-container">
+            <label class='yes_no'for="{{ form.short_of_breath.id_for_label }}">Short of Breath:</label>
+            <div class="form-check form-check-inline">
+            {{ form.short_of_breath.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.short_of_breath.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.fever.id_for_label }}">Fever:</label>
+            <div class="form-check form-check-inline">
+            {{ form.fever.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.fever.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.cough.id_for_label }}">Cough:</label>
+            <div class="form-check form-check-inline">
+            {{ form.cough.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.cough.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.chills.id_for_label }}">Chills:</label>
+            <div class="form-check form-check-inline">
+            {{ form.cold.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.cold.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.chills.id_for_label }}">No symptoms:</label>
+            <div class="form-check form-check-inline">
+            {{ form.no_symptoms.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.no_symptoms.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.chills.id_for_label }}">Halitosis:</label>
+            <div class="form-check form-check-inline">
+            {{ form.halitosis.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.halitosis.1 }}
+            </div>
+        </div>
+    
+        <div>
+            <label class="label-class">{{ form.reciva_barcode.label_tag }}</label>
+            {{ form.reciva_barcode }}
+            <label class="label-class">{{ form.tennax_number.label_tag }}</label>
+            {{ form.tennax_number }}
+            <label class="label-class">{{ form.casper_flow.label_tag }}</label>
+            {{ form.casper_flow }}
+        </div>
+    
+        <div>
+            <label class="label-class">{{ form.collection_start_time.label_tag }}</label>
+            {{ form.collection_start_time }}
+            <label class="label-class">{{ form.collection_stop_time.label_tag }}</label>
+            {{ form.collection_stop_time }}
+        </div>
+    
+        <div>
+            <label class="label-class">{{ form.collection_duration.label_tag }}</label>
+            {{ form.collection_duration }}
+            <label class="label-class">{{ form.breathing_rate.label_tag }}</label>
+            {{ form.breathing_rate }}
+            <label class="label-class" for="id_volume_collected">Volume Collected:</label>
+            {{ form.volume_collected }}
+        </div>
+    
+        <div class="div-container">
+            <label class='yes_no'for="{{ form.aborted.id_for_label }}">Aborted:</label>
+            <div class="form-check form-check-inline">
+            {{ form.aborted.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.aborted.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.incomplete.id_for_label }}">Incomplete:</label>
+            <div class="form-check form-check-inline">
+            {{ form.incomplete.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.incomplete.1 }}
+            </div>
+            <label class='yes_no'for="{{ form.declined.id_for_label }}">Declined:</label>
+            <div class="form-check form-check-inline">
+            {{ form.declined.0 }}
+            </div>
+            <div class="form-check form-check-inline">
+            {{ form.declined.1 }}
+            </div>
+        </div>
+    
+        <div>
+            <label class="label-class"> {{ form.room_air_barcode.label_tag }}</label>
+            {{ form.room_air_barcode }}
+            <label class="label-class">{{ form.room_air_tennax.label_tag }}</label>
+            {{ form.room_air_tennax }}
+            <label class="label-class">Room Air Time</label>
+            {{ form.room_air_collection_time }}
+        </div>
+        <div>
+            <label class="label-class">{{ form.casper_barcode.label_tag }}</label>
+            {{ form.casper_barcode }}
+            <label class="label-class">{{ form.casper_tennax.label_tag }}</label>
+            {{ form.casper_tennax }}
+            <label class="label-class">Casper Time</label>
+            {{ form.casper_collection_time }}
+        </div>
+    
+        <div>
+            <label class="label-class">{{ form.notes.label_tag }}</label>
+            {{ form.notes }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form>
+</br>
+</br>
+        </div>
+  </div>
+
+</html>
+
+{%endblock%}
+
+

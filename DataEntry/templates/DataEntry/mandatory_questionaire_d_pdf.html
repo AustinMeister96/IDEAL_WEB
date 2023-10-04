@@ -1,0 +1,70 @@
+
+<p class="bold-and-large">PART D. Second-Hand Smoke Exposure</p>
+
+<label>1. In your lifetime, you have considered your second-hand smoke exposure to be:  </label>{{ form.second_hand_smoke }} </br>
+<label >2. At any time in your life, have you been around someone else's tobacco smoke at least once per week for 1 year or longer?  </label> {{ form.second_hand_1yr }}</br>
+<label >2. (b) Where have you been around someone elses tobacco smoke?  </label></br>
+<label class='yes_no'>Exposure at Home:  </label></br>
+<label class='yes_no' >Exposure at Work:  </label>{{ form.second_hand_work }}</br>
+<label class='yes_no'  >Exposure during Leisure Activities:  </label>{{ form.second_hand_leisure }}</br>
+<label for="id_second_hand_daily in-line">(c) On average, how often were you around other peoples smoke?  </label> {{ form.second_hand_daily }}</br>
+<label >(d) On average, how many hours of exposure did you encounter for each day you were exposed?  </label></br>
+<label class='yes_no' > &lt;2 hours:  </label>{{ form.second_hand_2hrs }}</br>
+<label class='yes_no'>2-4 hours:  </label> {{ form.second_hand24hrs }}</br>
+<label class='yes_no' >4-6 hours:  </label>{{ form.second_hand_46hrs }}</br>
+<label class='yes_no'>&gt; 6 hours:  </label>{{ form.second_hand_6hrs }}</br>
+<label >(e) How many years were you exposed in total?  </label>{{ form.second_hand_yrs }}</br>
+<label >3. As a child and youth (18 years and under), was your exposure to secondhand smoke at home:  </label>{{ form.second_hand_youth }}</br>
+<label>1.	Have you ever had a drink of alcohol at least once per week for 1 year or longer?  </label>{{ form.alcohol }}</br>
+<label >From Age (years):  </label>{{ form.alcohol_from_age1 }}</br>
+<label >To Age (years):  </label> {{ form.alcohol_to_age1 }}</br>
+<label >Beer (cans or bottles/week):  </label>{{ form.alcohol_beer1 }}</br>
+<label >Wine (6 ounce glasses/week):  </label>{{ form.alcohol_wine1 }}</br>
+<label >Spirit or hard liquor (ounces/week):  </label> {{ form.alcohol_liquor1 }}</br>
+<label >From Age (years):  </label> {{ form.alcohol_from_age2 }}</br>
+<label >To Age (years):  </label>{{ form.alcohol_to_age2 }}</br>
+<label >Beer (cans or bottles/week):  </label> {{ form.alcohol_beer2 }}</br>
+<label >Wine (6 ounce glasses/week):  </label>{{ form.alcohol_wine2 }}</br>
+<label >Spirit or hard liquor (ounces/week):  </label>{{ form.alcohol_liquor2 }}</br>
+<label >From Age (years):  </label>{{ form.alcohol_from_age3 }}</br>
+<label>To Age (years):  </label>  {{ form.alcohol_to_age3 }}</br>
+<label >Beer (cans or bottles/week):  </label> {{ form.alcohol_beer3 }}</br>
+<label >Wine (6 ounce glasses/week):  </label>{{ form.alcohol_wine3 }}</br>
+<label>Spirit or hard liquor (ounces/week):  </label> {{ form.alcohol_liquor3 }}</br>
+<label >From Age (years):  </label>{{ form.alcohol_from_age4 }}</br>
+<label >To Age (years):  </label>{{ form.alcohol_to_age4 }}</br>
+<label>Beer (cans or bottles/week):  </label>{{ form.alcohol_beer4 }}</br>
+<label>Wine (6 ounce glasses/week:  )</label> {{ form.alcohol_wine4 }}</br>
+<label>Spirit or hard liquor (ounces/week):  </label>{{ form.alcohol_liquor4 }}</br>
+<label >2. Do you currently drink alcohol at least once per week?  </label>  {{ form.alcohol_current }}</br>
+<p class="bold-and-large">PART F. Medications  </p></br>
+<p>Are you currently using any of the following medications or drugs?  </p></br>
+<label class="label-binary">1. Inhaled corticosteroids?  </label>{{ fg_form.inhaled_drugs }}</br>
+<label >For how long have you used it?  Days:  </label>{{ fg_form.inhaled_drugs_day }}</br>
+<label >Months:  </label>{{ fg_form.inhaled_drugs_month }}</br>
+<label >Years:  </label>{{ fg_form.inhaled_drugs_year }}</br>
+<label >How often have you used this medication?  </label>{{ fg_form.inhaled_drugs_freq }}</br>
+<label class="label-binary">2. Bronchodilators?       </label>{{ fg_form.bronchodialators }}</br>
+<label >For how long have you used it?  Days:  </label>{{ fg_form.bronchodialators_day }}</br>
+<label >Months:  </label>{{ fg_form.bronchodialators_month }}</br>
+<label >Years:  </label>{{ fg_form.bronchodialators_year }}</br>
+<label >How often have you used this medication?  </label>{{ fg_form.bronchodialators_freq }}</br>
+<label class="label-binary" >3. Statins:  </label>{{ fg_form.statins }}                   </br>
+<label >For how long have you used it?  Days</label>{{ fg_form.statins_day }}</br>
+<label >Months</label> {{ fg_form.statins_month }}</br>
+<label >Years</label> {{ fg_form.statins_year }}</br>
+<label >How often have you used this medication? </label>{{ fg_form.statins_freq }}</br>
+<label class="label-binary">4. Metformin:  </label> {{ fg_form.metformin }}</br>
+<label >For how long have you used it?  Days</label>{{ fg_form.metformin_day }}</br>
+<label >Months</label>{{ fg_form.metformin_month }}</br>
+<label >Years</label> {{ fg_form.metformin_year }}</br>
+<label >How often have you used this medication? </label> {{ fg_form.metformin_freq }}</br>
+<label >1. Which of these categories best describes your current working situation? </label>{{ fg_form.current_working_situation }}</br>
+<label >Other - Please specify:  </label>{{ fg_form.current_working_situation_other }}</br>
+<label >2. (a) In what occupation have you worked the longest during your adult life?  </label>  {{ fg_form.occupation_longest }}</br>
+<label >(b) What were your usual activities and duties in this occupation?  </label> {{ fg_form.occupation_longest_activities }}</br>
+<label >(c) How many years have you worked in this occupation?  </label>{{ fg_form.occupation_exposure }}</br>
+<label >3. Do you think you've been exposed for more than one year?  </label>{{ fg_form.occupation_exposure }}</br>
+<label >What fumes, dusts, chemicals or agents have you been exposed to?  </label> {{ fg_form.occupation_fumes }}</br>
+<label >How many years have you been exposed?  </label>{{ fg_form.occupation_years }}</br>
+</br>

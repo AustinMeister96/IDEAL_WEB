@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  #dataentry{
+      background-color: white;
+      padding: 40px;
+  }
+
+  #lab_processing3{
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+
+      opacity: 1.0;
+  }
+  #lab_processing {
+      position: relative;
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+      opacity: 1.0;
+      border-radius: 10px; /* Adjust the radius as desired */
+  }
+
+  #lab_processing::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+      box-shadow: 0 0 20px 20px white inset;
+      border-radius: 10px;
+      opacity: 0.5;
+  }
+  #main{
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 100px;
+
+  }
+
+  #reciva_entry {
+      padding-bottom: 10px;
+  }
+  .tab-content input[type="checkbox"] {
+  width: 15px;
+  margin-right: 15px; /* Adjust the spacing between checkbox and label */
+  }
+  .testing1{
+      display: flex;
+      align-items: center;
+  }
+  .form-group2 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-group3 {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .form-group {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .line-through{
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+  }
+  .bold-and-large{
+      font-weight: bold;
+      font-size: 20px;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-field {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .btn {
+      float: right;
+
+  }
+  .label-class {
+  display: inline-block;
+  width: 200px;
+  }
+  .label-class2 {
+  display: inline-block;
+  width: 180 px;
+  }
+  .in-line {
+        text-align: right;
+    }
+
+    .in-line input[type="text"] {
+        width: 200px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .in-line button {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .lower-marg {
+        margin-bottom: 20px;
+    }
+    .yes-no {
+        width:200px;
+        justify-content: left;
+
+    }
+</style>
+<script>
+    function addInclusion() {
+        var participantId = document.getElementById("search").value;
+        var url = "/DataEntry/add_inclusion/" + encodeURIComponent(participantId);
+        window.location.href = url;
+    }
+</script>
+
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="lab_processing" class="dataentry">
+        
+        <p class="bold-and-large">PLCO Score Calcualtion</p>
+        <div class="container">
+            <head>
+                <style>
+                    table {
+                        width: 80%; /* Adjust the table width as needed */
+                        margin: auto;
+                        border-collapse: collapse;
+                    }
+            
+                    table, th, td {
+                        border: 1px solid black;
+                        padding: 8px;
+                    }
+            
+                    th {
+                        background-color: #f2f2f2;
+                    }
+            
+                    .add-row-button {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <form method="post">
+                    {% csrf_token %}
+
+                <div>
+                    <!-- Education -->
+                    <label class='label-class' for="id_education">Education:</label>
+                    {{ form.education }}
+                </div>
+                <div>
+                    <!-- BMI -->
+                    <label class='label-class' for="id_bmi">BMI:</label>
+                    {{ form.bmi }}
+                </div>
+                <div>
+                    <!-- COPD -->
+                    <label class='label-class' for="id_copd">COPD:</label>
+                    {{ form.copd.0 }}
+                    {{ form.copd.1 }}
+                </div>
+                <div>
+                    <!-- Cancer History -->
+                    <label  class='label-class' for="id_cancer_history">Cancer History:</label>
+                    {{ form.cancer_history.0 }}
+                    {{ form.cancer_history.1 }}
+                </div>
+                <div>
+                    <!-- Lung Cancer History -->
+                    <label  class='label-class'  for="id_lung_cancer_history">Lung Cancer History:</label>
+                    {{ form.lung_cancer_history.0 }}
+                    {{ form.lung_cancer_history.1 }}
+                </div>
+                <div>
+                    <!-- Race -->
+                    <label class='label-class' for="id_race">Race:</label>
+                    {{ form.race }}
+                </div>
+                <div>
+                    <!-- Smoking Status -->
+                    <label  class='label-class' for="id_smoking_status">Smoking Status:</label>
+                    {{ form.smoking_status.0 }}
+                    {{ form.smoking_status.1 }}
+                </div>
+                <div>
+                    <!-- Average Number of Cigarettes Smoked per Day -->
+                    <label class='label-class' for="id_avg_num_cigs_smoked_day">Average Number of Cigarettes Smoked per Day:</label>
+                    {{ form.avg_num_cigs_smoked_day }}
+                </div>
+                <div>
+                    <!-- Duration Smoked -->
+                    <label class='label-class' for="id_duration_smoked">Duration Smoked:</label>
+                    {{ form.duration_smoked }}
+                </div>
+                <div>
+                    <!-- Years Quit -->
+                    <label class='label-class' for="id_years_quit">Years Quit:</label>
+                    {{ form.years_quit }}
+                </div>
+                <div>
+                <label class="">PLCO Score:</label>
+                <span id="plco-score-display"></span>
+                </div>
+                    <!-- Submit Button -->
+                    <input type="submit" value="Submit">
+
+                </form>
+
+                
+        </div>
+    </div>
+    
+    <div>
+      
+    </div>
+
+  </div>
+
+</html>
+<script>
+    // Function to calculate PLCO Score based on form values
+    function calculatePlcoScore() {
+        // Calculate PLCO Score (replace this with your actual calculation logic)
+        const plcoScore = 7.84;
+
+        // Display the calculated PLCO Score
+        const plcoScoreDisplay = document.getElementById('plco-score-display');
+        plcoScoreDisplay.textContent = plcoScore.toFixed(2) + '%';
+    }
+
+    // Wait for the document to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the form element
+        const form = document.querySelector('form');
+
+        // Add an event listener for form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Call the function to calculate and display the PLCO Score
+            calculatePlcoScore();
+        });
+    });
+</script>
+{%endblock%}

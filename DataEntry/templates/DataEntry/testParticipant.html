@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<p> test file</p>
+<form method="post">
+{% csrf_token %}
+{{form.as_p}}
+<button type="submit">Submit</button>
+</form>
+{% for participant in testparticipants %}
+    <a href="{%url 'show_participant' participant.id%}"> </a>
+        {{ participant}}
+
+
+    <p>No participants found</p>
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

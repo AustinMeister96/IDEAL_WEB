@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  #dataentry{
+      background-color: white;
+      padding: 40px;
+  }
+
+  #lab_processing3{
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+
+      opacity: 1.0;
+  }
+  #lab_processing {
+      position: relative;
+      background-color: white;
+      margin-top: 50px;
+      padding: 10px;
+      opacity: 1.0;
+      border-radius: 10px; /* Adjust the radius as desired */
+  }
+
+  #lab_processing::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
+      box-shadow: 0 0 20px 20px white inset;
+      border-radius: 10px;
+      opacity: 0.5;
+  }
+  #main{
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 100px;
+
+  }
+
+  #reciva_entry {
+      padding-bottom: 10px;
+  }
+  .tab-content input[type="checkbox"] {
+  width: 15px;
+  margin-right: 15px; /* Adjust the spacing between checkbox and label */
+  }
+  .testing1{
+      display: flex;
+      align-items: center;
+  }
+  .form-group2 {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-group3 {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .form-group {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .line-through{
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+  }
+  .bold-and-large{
+      font-weight: bold;
+      font-size: 20px;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;  /* Allow the items to wrap as needed */
+      margin-bottom: 15px;
+  }
+  .form-field {
+      flex: 1;
+      margin: 0 5px; /* Add some space around each field */
+      width: 10%;
+  }
+  .short-entry-box{
+      width: 100px; 
+  }
+  .btn {
+      float: right;
+
+  }
+  .label-class {
+  display: inline-block;
+  width: 200px;
+  }
+  .label-class2 {
+  display: inline-block;
+  width: 180 px;
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+    <div id="main">
+      <div id="lab_processing" class="dataentry">
+        <p class="bold-and-large">Participants</p>
+        </br>
+        {% for participant in participants %}
+        <a href="{% url 'show-participants' participant.id %}">
+          {{ participant.first_name }} - {{ participant.id }}
+        </a>
+        </br>
+        {% endfor %}
+  
+        <form id="updateParticipantStatusForm" method="post">
+          {% csrf_token %}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Function to update participant status
+      function updateParticipantStatus() {
+        // Collect form data
+        var formData = $('#updateParticipantStatusForm').serialize();
+  
+        // Send AJAX request
+        $.ajax({
+          url: '/DataEntry/update_participant_status/',
+          type: 'POST',
+          data: formData,
+          success: function(response) {
+            // Update participant status dynamically
+            $('#participantStatus').text(response.participant_status);
+          }
+        });
+      }
+  
+      // Listen for changes in inclusion criteria fields
+      $('.inclusion-criteria').on('change', function() {
+        updateParticipantStatus();
+      });
+  
+      // Initial update on page load
+      updateParticipantStatus();
+    });
+
+    $(document).on('submit', '#post-form', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'inclusion.html',
+            data:{
+                participant_num:$('#participant_num').val(),
+
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success:function(){
+                alert("Form submitted successfully");
+            }
+        });
+    });
+  </script>
+  
+</html>
+
+{%endblock%}

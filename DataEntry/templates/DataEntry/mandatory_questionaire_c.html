@@ -1,0 +1,569 @@
+<html lang="en">
+
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+        <!-- Include Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Include Bootstrap Datepicker JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            // Custom function to initialize the datepicker
+            function initializeDatepicker() {
+                $('.datepicker').datepicker({
+                    format: 'yyyy-mm-dd' // Customize the date format if needed
+                });
+            }
+            // Call the function when the document is ready
+            $(document).ready(function() {
+                initializeDatepicker();
+            });
+        </script>
+    <meta charset="UTF-8">
+    <title>IDEAL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    #dataentry{
+        background-color: white;
+        padding: 40px;
+    }
+
+    #lab_processing3{
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+
+        opacity: 1.0;
+    }
+    #lab_processing {
+        position: relative;
+        background-color: white;
+        margin-top: 50px;
+        padding: 10px;
+        opacity: 1.0;
+        border-radius: 10px; /* Adjust the radius as desired */
+    }
+
+    #lab_processing::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        z-index: -1;
+        box-shadow: 0 0 20px 20px white inset;
+        border-radius: 10px;
+        opacity: 0.5;
+    }
+    #main{
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 100px;
+
+    }
+
+    #reciva_entry {
+        padding-bottom: 10px;
+    }
+    .tab-content input[type="checkbox"] {
+    width: 15px;
+    margin-right: 15px; /* Adjust the spacing between checkbox and label */
+    }
+    .testing1{
+        display: flex;
+        align-items: center;
+    }
+    .form-group2 {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-group3 {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .line-through{
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+    .bold-and-large{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;  /* Allow the items to wrap as needed */
+        margin-bottom: 15px;
+    }
+    .form-field {
+        flex: 1;
+        margin: 0 5px; /* Add some space around each field */
+        width: 10%;
+    }
+    .short-entry-box{
+        width: 100px; 
+    }
+    .btn {
+        float: right;
+
+    }
+    .table {
+    display: table;
+    width: 65%;
+    }
+  
+    .table-row {
+    display: table-row;
+    }
+  
+    .table-cell {
+    display: table-cell;
+    padding: 5px;
+    }
+</style>
+
+
+
+<script>
+    $(document).ready(function() {
+        // Hide the gender_identity_other field and label initially
+        $("#id_gender_identity_other").hide();
+        $("label[for='id_gender_identity_other']").hide();
+    
+        // Add event listener to gender_identity field
+        $("#id_gender_identity").change(function() {
+            var selectedValue = $(this).val();
+    
+            // Check if 'Other' is selected
+            if (selectedValue === "Other") {
+                $("#id_gender_identity_other").show();
+                $("label[for='id_gender_identity_other']").show();
+            } else {
+                $("#id_gender_identity_other").hide();
+                $("label[for='id_gender_identity_other']").hide();
+            }
+        
+        
+        });
+
+        $("#id_ethnicity_other").hide();
+        $("label[for='id_ethnicity_other']").hide();
+    
+        // Add event listener to gender_identity field
+        $("#id_ethnicity").change(function() {
+            var selectedValue = $(this).val();
+    
+            // Check if 'Other' is selected
+            if (selectedValue === "Other") {
+                $("#id_ethnicity_other").show();
+                $("label[for='id_ethnicity_other']").show();
+            } else {
+                $("#id_ethnicity_other").hide();
+                $("label[for='id_ethnicity_other']").hide();
+            }
+        
+        
+        });
+
+        $("#id_year_moved_to_canada").hide();
+        $("label[for='id_year_moved_to_canada']").hide();
+
+        $("#id_birthplace").hide();
+        $("label[for='id_birthplace']").hide();
+    
+        // Add event listener to gender_identity field
+        $("#id_born_in_canada").change(function() {
+            var selectedValue = $(this).val();
+    
+            // Check if 'Other' is selected
+            if (selectedValue === "No") {
+                $("#id_year_moved_to_canada").show();
+                $("label[for='id_year_moved_to_canada']").show();
+                $("#id_birthplace").show();
+                $("label[for='id_birthplace']").show();
+
+            } else {
+                $("#id_year_moved_to_canada").hide();
+                $("label[for='id_year_moved_to_canada']").hide();
+                $("#id_birthplace").hide();
+                $("label[for='id_birthplace']").hide();
+            }
+        
+        
+        });
+
+        $("#id_highest_education_lvl_other").hide();
+        $("label[for='id_highest_education_lvl_other']").hide();
+    
+        // Add event listener to gender_identity field
+        $("#id_highest_education_lvl").change(function() {
+            var selectedValue = $(this).val();
+    
+            // Check if 'Other' is selected
+            if (selectedValue === "Other") {
+                $("#id_highest_education_lvl_other").show();
+                $("label[for='id_highest_education_lvl_other']").show();
+            } else {
+                $("#id_highest_education_lvl_other").hide();
+                $("label[for='id_highest_education_lvl_other']").hide();
+            }
+        
+        
+        });
+
+        $("#id_personal_cancer_history_youngest_age").hide();
+        $("label[for='id_personal_cancer_history_youngest_age']").hide();
+        $("#id_personal_history_cancer_type").hide();
+        $("label[for='id_personal_history_cancer_type']").hide();
+
+        // Add event listener to gender_identity field
+        $("#id_personal_cancer_history").change(function() {    
+
+            if ($(this).val() === 'True') {
+                $("#id_personal_cancer_history_youngest_age").show();
+                $("label[for='id_personal_cancer_history_youngest_age']").show();
+                $("#id_personal_history_cancer_type").show();
+                $("label[for='id_personal_history_cancer_type']").show();
+            } else {
+                $("#id_personal_cancer_history_youngest_age").hide();
+                $("label[for='id_personal_cancer_history_youngest_age']").hide();
+                $("#id_personal_history_cancer_type").hide();
+                $("label[for='id_personal_history_cancer_type']").hide();
+            }
+        
+        
+        });
+
+
+        // Add event listener to gender_identity field
+        $("#id_personal_cancer_history").change(function() {    
+
+            if ($(this).val() === 'True') {
+                $("#id_personal_cancer_history_youngest_age").show();
+                $("label[for='id_personal_cancer_history_youngest_age']").show();
+                $("#id_personal_history_cancer_type").show();
+                $("label[for='id_personal_history_cancer_type']").show();
+            } else {
+                $("#id_personal_cancer_history_youngest_age").hide();
+                $("label[for='id_personal_cancer_history_youngest_age']").hide();
+                $("#id_personal_history_cancer_type").hide();
+                $("label[for='id_personal_history_cancer_type']").hide();
+            }
+        
+        
+        });
+    });
+</script>
+
+<div id="main">
+    <div id="lab_processing" class="dataentry">
+        <a href=" static/IDEAL_Optional_Questionnaire_Clean_JD_02_May_2023.docx" download>Download Filled Form</a>
+        <a href="{% url 'add_mandatory_questionaire_c' participant_id %}?generate_pdf=true">Generate PDF</a>
+        <input  type="file" name="Upload PDF">
+        
+        <form method="post" action="{{ form_action_url }}">
+            {% csrf_token %}
+            <input type="hidden" name="participant_num" value="{{ participant_id }}">
+            <p class="bold-and-large">Part C. Smoking History</p>
+            <div class="form-group">
+                <label for="{{ form.smoked_more_100_cigs.id_for_label }}">1. (a) Have you smoked more than 100 cigarettes in your lifetime?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.smoked_more_100_cigs.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.smoked_more_100_cigs.1 }}
+                </div>
+                <label for="{{ form.age_regular_smoking.id_for_label }}">(b) How old were you when you started smoking regularly? </label>
+                {{ form.age_regular_smoking }}
+                <label for="{{ form.avg_cig_per_day.id_for_label }}">(c) Average Cigarettes per Day</label>
+                {{ form.avg_cig_per_day }}
+            </div>
+        
+            <!-- Stop Smoking -->
+            <div class="form-group">
+                <label for="{{ form.stop_smoking.id_for_label }}">(d) Have you stopped smoking cigarettes now?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.stop_smoking.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.stop_smoking.1 }}
+                </div>
+                <label for="{{ form.last_cig_date.id_for_label }}">(e) When did you last smoke cigarettes?</label>
+                {{ form.last_cig_date }}
+                <label for="{{ form.last_cig_date.id_for_label }}">(e) How old were you?</label>
+                {{ form.last_cig_age }}
+            </div>
+        
+            <!-- Smoked Pipe -->
+            <div class="form-group">
+                <label for="{{ form.marajuana_use.id_for_label }}">2. Have you ever used or tried marijuana/cannabis or hashish:</label>
+
+                <div class="form-check form-check-inline">
+                    {{ form.marajuana_use.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.marajuana_use.1 }}
+                </div>
+            </div>
+            <center>
+            <div class="table-container">
+            <div class="table">
+                <div class="table-row">
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1.id_for_label }}">From Age (Years)</label>
+                    {{ form.marajuana_use_age_1 }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_quantity.id_for_label }}">To Age (Years)</label>
+
+                    {{ form.marajuana_use_to_age_1 }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_quantity.id_for_label }}">Quantity of Use</label>
+
+                    {{ form.marajuana_use_age_1_quantity }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_mode.id_for_label }}">Mode of Use</label>
+                    {{ form.marajuana_use_age_1_mode }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_units.id_for_label }}">Units</label>
+                    {{ form.marajuana_use_age_1_units }}
+                  </div>
+                </div>
+                
+                <div class="table-row">
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1.id_for_label }}">From Age (Years)</label>
+                    {{ form.marajuana_use_age_2 }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_quantity.id_for_label }}">To Age (Years)</label>
+                    {{ form.marajuana_use_to_age_2 }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_quantity.id_for_label }}">Quantity of Use</label>
+                    {{ form.marajuana_use_age_2_quantity }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_mode.id_for_label }}">Mode of Use</label>
+                    {{ form.marajuana_use_age_2_mode }}
+                  </div>
+                  <div class="table-cell">
+                    <label for="{{ form.marajuana_use_age_1_units.id_for_label }}">Units</label>
+                    {{ form.marajuana_use_age_2_units }}
+                  </div>
+                </div>
+                </div>
+                <button id="add-row-button">Add Row</button>
+                         
+            </div>
+            </center>
+        </br>
+            <div class="form-group">
+                <label for="{{ form.smoked_pipe.id_for_label }}">3. Have you ever smoked a pipe at least once a week for 1 year or longer? </label>
+                <div class="form-check form-check-inline">
+                    {{ form.smoked_pipe.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.smoked_pipe.1 }}
+                </div>
+                <label for="{{ form.smoked_pipe_avg_ounces.id_for_label }}">(b) Average Ounces of Pipe Smoking</label>
+                {{ form.smoked_pipe_avg_ounces }}
+                <label for="{{ form.}}"></label>
+            </div>
+        
+            <!-- Still Smoking Pipe -->
+            <div class="form-group">
+                <label for="{{ form.still_smoking_pipe.id_for_label }}">(c) Do you still smoke a pipe now?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.still_smoking_pipe.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.still_smoking_pipe.1 }}
+                </div>
+                <label for="{{ form.still_smoking_pipe_stop_date.id_for_label }}">Stop Date</label>
+                {{ form.still_smoking_pipe_stop_date }}
+                |  OR  |
+                <label for="{{ form.still_smoking_pipe_stop_age.id_for_label }}">Stop Age</label>
+                {{ form.still_smoking_pipe_stop_age }}
+
+            </div>
+        
+            <!-- Average Drinks per Week -->
+            <div class="form-group">
+                <label for="id_still_smoke_cigars">4. (a) Have you ever smoked cigars at least once a week for 1 year or longer?  </label>
+                <div class="form-check form-check-inline">
+                    {{ form.still_smoke_cigars.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.still_smoke_cigars.1 }}
+                </div>
+                <label for="id_still_smoke_cigars_stop_date">Stop Date:</label>
+                {{ form.still_smoke_cigars_stop_date }}
+                | OR |
+                <label for="id_still_smoke_cigars_stop_age">Stop Age:</label>
+                {{ form.still_smoke_cigars_stop_age }}
+
+
+              </div>
+              
+              <div>
+                <label for="id_chewing_tobacco">5. (a) Have you ever used chewing tobacco?</label>
+                {{ form.chewing_tobacco }}
+                <label for="id_chewing_tobacco_age">Chewing Tobacco Starting Age:</label>
+                {{ form.chewing_tobacco_age }}
+                <label for="id_chewing_tobacco_years">Chewing Tobacco Total Years:</label>
+                {{ form.chewing_tobacco_years }}
+
+              </div>
+              </br>
+              <div>
+                <label for="id_snuff">(b) Have you ever used Snuff?</label>
+                {{ form.snuff }}
+                <label for="id_snuff_age">Snuff Starting Age:</label>
+                {{ form.snuff_age }}
+                <label for="id_snuff_years">Snuff Total Years:</label>
+                {{ form.snuff_years }}
+
+              </div> 
+              </br>
+              <div>
+                <label for="id_vape">6. (a) Have you ever vaped at least once a week for 1 year or longer?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.vape.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.vape.1 }}
+                </div>
+                <label for="id_vape_num_times">(b) Number of Times/Week:</label>
+                {{ form.vape_num_times }}
+                <label for="id_vape_start_date">Vape Start Date:</label>
+                {{ form.vape_start_date }}
+                |  OR  |
+                <label for="id_vape_start_age">Vape Start Age:</label>
+                {{ form.vape_start_age }}
+
+              </div>
+            </br>
+              <div>
+                <label for="id_still_vape">(d) Do you still vape now?  </label>
+                <div class="form-check form-check-inline">
+                    {{ form.still_vape.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.still_vape.1 }}
+                </div>
+                <label for="id_vape_stop_date">Vape Stop Date:</label>
+                {{ form.vape_stop_date }}
+                |  OR  |
+                <label for="id_still_vape_stop_age">Still Vape Stop Age:</label>
+                {{ form.still_vape_stop_age }}
+                <label for="id_vape_flavor">(e) What flavor of vape do you use most often?  </label>
+                {{ form.vape_flavor }}
+              </div>
+              </br>
+              <div>
+                <label for="id_cigs_waking_up">7. (a) Cigarettes upon Waking Up:</label>
+                {{ form.cigs_waking_up }}
+                <label for="id_smoke_refrain">(b) Difficult to refrain from smoking in places where it is forbidden?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_refrain.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_refrain.1 }}
+                </div>
+                <label for="id_cig_giveup">(c)	Which cigarette would you hate to give up?</label>
+                {{ form.cig_giveup }}
+              </div>
+                </br>
+              <div>
+                <label for="id_smoke_morning">(d) Do you smoke more frequently in the morning?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_morning.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_morning.1 }}
+                </div>
+                <label for="id_smoke_sick">(e) Do you smoke even if you are sick in bed most of the day?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_sick.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.smoke_sick.1 }}
+                </div>
+              </div>
+            </br>
+              <div>
+                <label for="id_quit_smoking">(f) Have you ever tried to quit smoking?</label>
+                <div class="form-check form-check-inline">
+                    {{ form.quit_smoking.0 }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.quit_smoking.1 }}
+                </div>
+                <label for="id_quit_smoking_times">How many times?</label>
+                {{ form.quit_smoking_times }}
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </br>
+            <button type="button" class="btn btn-primary" href="{% url 'add_mandatory_questionaire_de' participant_id %}">Save and Continue</button>
+        </br>
+
+        </div>
+        
+    </form>
+    
+
+    
+    </div> 
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addRowButton = document.getElementById('add-row-button');
+        const table = document.querySelector('.table');
+        const sampleRow = document.querySelector('.table-row'); // Sample row to clone
+    
+        addRowButton.addEventListener('click', function() {
+            // Create a new row as a clone of the sample row
+            const newRow = sampleRow.cloneNode(true);
+            
+            // Find all input elements in the new row and modify their IDs
+            const inputElements = newRow.querySelectorAll('input');
+            inputElements.forEach((input) => {
+                const currentId = input.getAttribute('id');
+                if (currentId) {
+                    const newId = currentId.replace('marajuana_use_age_1', 'marajuana_use_age_3'); // Modify the ID as needed
+                    input.setAttribute('id', newId);
+                }
+            });
+    
+            // Append the new row to the table
+            table.appendChild(newRow);
+        });
+    });
+    </script>
+
+
+</html>
+
+{% endblock %}

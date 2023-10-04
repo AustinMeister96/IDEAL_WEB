@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    #testing{
+        background-color: red !important;
+    }
+</style>
+<div id="testing">
+    <form>
+        <!-- First line -->
+        <div class="form-line">
+        <div class="form-field">
+            <label for="id_iron_exposure_age">Iron Exposure Age:</label>
+            <input type="text" name="iron_exposure_age" id="id_iron_exposure_age" class="custom-class" placeholder="Iron Exposure Age">
+        </div>
+        
+        <div class="form-field">
+            <label for="id_painting">Painting:</label>
+            <input type="text" name="painting" id="id_painting" class="custom-class" placeholder="Painting">
+        </div>
+        
+        <div class="form-field">
+            <label for="id_painting_duration">Painting Duration:</label>
+            <input type="text" name="painting_duration" id="id_painting_duration" class="custom-class" placeholder="Painting Duration">
+        </div>
+        </div>
+        
+        <!-- Second line -->
+        <div class="form-line">
+        <div class="form-field">
+            <label for="id_painting_exposure_age">Painting Exposure Age:</label>
+            <input type="text" name="painting_exposure_age" id="id_painting_exposure_age" class="custom-class" placeholder="Painting Exposure Age">
+        </div>
+        
+        <div class="form-field">
+            <label for="id_rubber">Rubber:</label>
+            <input type="text" name="rubber" id="id_rubber" class="custom-class" placeholder="Rubber">
+        </div>
+        
+        <div class="form-field">
+            <label for="id_rubber_duration">Rubber Duration:</label>
+            <input type="text" name="rubber_duration" id="id_rubber_duration" class="custom-class" placeholder="Rubber Duration">
+        </div>
+        </div>
+        <!-- Third line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_rubber_exposure_age">Rubber Exposure Age:</label>
+        <input type="text" name="rubber_exposure_age" id="id_rubber_exposure_age" class="custom-class" placeholder="Rubber Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_burn_pits">Burn Pits:</label>
+        <input type="text" name="burn_pits" id="id_burn_pits" class="custom-class" placeholder="Burn Pits">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_burn_pits_duration">Burn Pits Duration:</label>
+        <input type="text" name="burn_pits_duration" id="id_burn_pits_duration" class="custom-class" placeholder="Burn Pits Duration">
+        </div>
+    </div>
+    
+    <!-- Fourth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_burn_pits_exposure_age">Burn Pits Exposure Age:</label>
+        <input type="text" name="burn_pits_exposure_age" id="id_burn_pits_exposure_age" class="custom-class" placeholder="Burn Pits Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_oil_fires">Oil Fires:</label>
+        <input type="text" name="oil_fires" id="id_oil_fires" class="custom-class" placeholder="Oil Fires">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_oil_fires_duration">Oil Fires Duration:</label>
+        <input type="text" name="oil_fires_duration" id="id_oil_fires_duration" class="custom-class" placeholder="Oil Fires Duration">
+        </div>
+    </div>
+    
+    <!-- Fifth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_oil_fires_exposure_age">Oil Fires Exposure Age:</label>
+        <input type="text" name="oil_fires_exposure_age" id="id_oil_fires_exposure_age" class="custom-class" placeholder="Oil Fires Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_sulfur_fires">Sulfur Fires:</label>
+        <input type="text" name="sulfur_fires" id="id_sulfur_fires" class="custom-class" placeholder="Sulfur Fires">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_sulfur_fires_duration">Sulfur Fires Duration:</label>
+        <input type="text" name="sulfur_fires_duration" id="id_sulfur_fires_duration" class="custom-class" placeholder="Sulfur Fires Duration">
+        </div>
+    </div>
+    
+    <!-- Sixth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_sulfur_fires_exposure_age">Sulfur Fires Exposure Age:</label>
+        <input type="text" name="sulfur_fires_exposure_age" id="id_sulfur_fires_exposure_age" class="custom-class" placeholder="Sulfur Fires Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_atsugi">Atsugi:</label>
+        <input type="text" name="atsugi" id="id_atsugi" class="custom-class" placeholder="Atsugi">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_atsugi_duration">Atsugi Duration:</label>
+        <input type="text" name="atsugi_duration" id="id_atsugi_duration" class="custom-class" placeholder="Atsugi Duration">
+        </div>
+    </div>
+    
+    <!-- Seventh line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_atsugi_exposure_age">Atsugi Exposure Age:</label>
+        <input type="text" name="atsugi_exposure_age" id="id_atsugi_exposure_age" class="custom-class" placeholder="Atsugi Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_sand_storms">Sand Storms:</label>
+        <input type="text" name="sand_storms" id="id_sand_storms" class="custom-class" placeholder="Sand Storms">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_sand_storms_duration">Sand Storms Duration:</label>
+        <input type="text" name="sand_storms_duration" id="id_sand_storms_duration" class="custom-class" placeholder="Sand Storms Duration">
+        </div>
+    </div>
+    
+    <!-- Eighth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_sand_storms_exposure_age">Sand Storms Exposure Age:</label>
+        <input type="text" name="sand_storms_exposure_age" id="id_sand_storms_exposure_age" class="custom-class" placeholder="Sand Storms Exposure Age">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held">Job Held:</label>
+        <input type="text" name="job_held" id="id_job_held" class="custom-class" placeholder="Job Held">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held_duration">Job Held Duration:</label>
+        <input type="text" name="job_held_duration" id="id_job_held_duration" class="custom-class" placeholder="Job Held Duration">
+        </div>
+    </div>
+    
+    <!-- Ninth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_job_held_industry">Job Held Industry:</label>
+        <input type="text" name="job_held_industry" id="id_job_held_industry" class="custom-class" placeholder="Job Held Industry">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held_2">Job Held 2:</label>
+        <input type="text" name="job_held_2" id="id_job_held_2" class="custom-class" placeholder="Job Held 2">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held_2_duration">Job Held 2 Duration:</label>
+        <input type="text" name="job_held_2_duration" id="id_job_held_2_duration" class="custom-class" placeholder="Job Held 2 Duration">
+        </div>
+    </div>
+    
+    <!-- Tenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_job_held_2_industry">Job Held 2 Industry:</label>
+        <input type="text" name="job_held_2_industry" id="id_job_held_2_industry" class="custom-class" placeholder="Job Held 2 Industry">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held_3">Job Held 3:</label>
+        <input type="text" name="job_held_3" id="id_job_held_3" class="custom-class" placeholder="Job Held 3">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_job_held_3_duration">Job Held 3 Duration:</label>
+        <input type="text" name="job_held_3_duration" id="id_job_held_3_duration" class="custom-class" placeholder="Job Held 3 Duration">
+        </div>
+    </div>
+    
+    <!-- Eleventh line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_job_held_3_industry">Job Held 3 Industry:</label>
+        <input type="text" name="job_held_3_industry" id="id_job_held_3_industry" class="custom-class" placeholder="Job Held 3 Industry">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_duration_outdoor_pollution">Duration Outdoor Pollution:</label>
+        <input type="text" name="duration_outdoor_pollution" id="id_duration_outdoor_pollution" class="custom-class" placeholder="Duration Outdoor Pollution">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_duraiton_indoor_pollution">Duration Indoor Pollution:</label>
+        <input type="text" name="duraiton_indoor_pollution" id="id_duraiton_indoor_pollution" class="custom-class" placeholder="Duration Indoor Pollution">
+        </div>
+    </div>
+    
+    <!-- Twelfth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_location">Cooking Location:</label>
+        <input type="text" name="cooking_location" id="id_cooking_location" class="custom-class" placeholder="Cooking Location">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_appliances">Cooking Appliances:</label>
+        <input type="text" name="cooking_appliances" id="id_cooking_appliances" class="custom-class" placeholder="Cooking Appliances">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking">Cooking:</label>
+        <input type="text" name="cooking" id="id_cooking" class="custom-class" placeholder="Cooking">
+        </div>
+    </div>
+    
+    <!-- Thirteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_frequency_in_cooking_location">Frequency in Cooking Location:</label>
+        <input type="text" name="frequency_in_cooking_location" id="id_frequency_in_cooking_location" class="custom-class" placeholder="Frequency in Cooking Location">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_kitchen_range">Kitchen Range:</label>
+        <input type="text" name="kitchen_range" id="id_kitchen_range" class="custom-class" placeholder="Kitchen Range">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_kitchen_range_age">Kitchen Range Age:</label>
+        <input type="text" name="kitchen_range_age" id="id_kitchen_range_age" class="custom-class" placeholder="Kitchen Range Age">
+        </div>
+    </div>
+    
+    <!-- Fourteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_0_20_frequency">Cooking 0-20 Frequency:</label>
+        <input type="text" name="cooking_0_20_frequency" id="id_cooking_0_20_frequency" class="custom-class" placeholder="Cooking 0-20 Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_frequency_times">Cooking 0-20 Frequency Times:</label>
+        <input type="text" name="cooking_0_20_frequency_times" id="id_cooking_0_20_frequency_times" class="custom-class" placeholder="Cooking 0-20 Frequency Times">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_fuel">Cooking 0-20 Fuel:</label>
+        <input type="text" name="cooking_0_20_fuel" id="id_cooking_0_20_fuel" class="custom-class" placeholder="Cooking 0-20 Fuel">
+        </div>
+    </div>
+    
+    <!-- Fifteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_0_20_fuel_other">Cooking 0-20 Fuel (Other):</label>
+        <input type="text" name="cooking_0_20_fuel_other" id="id_cooking_0_20_fuel_other" class="custom-class" placeholder="Cooking 0-20 Fuel (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_cooking_oil">Cooking 0-20 Cooking Oil:</label>
+        <input type="text" name="cooking_0_20_cooking_oil" id="id_cooking_0_20_cooking_oil" class="custom-class" placeholder="Cooking 0-20 Cooking Oil">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_cooking_oil_store">Cooking 0-20 Cooking Oil (Store):</label>
+        <input type="text" name="cooking_0_20_cooking_oil_store" id="id_cooking_0_20_cooking_oil_store" class="custom-class" placeholder="Cooking 0-20 Cooking Oil (Store)">
+        </div>
+    </div>
+    
+    <!-- Sixteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_0_20_cooking_oil_homemade">Cooking 0-20 Cooking Oil (Homemade):</label>
+        <input type="text" name="cooking_0_20_cooking_oil_homemade" id="id_cooking_0_20_cooking_oil_homemade" class="custom-class" placeholder="Cooking 0-20 Cooking Oil (Homemade)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_cooking_oil_other">Cooking 0-20 Cooking Oil (Other):</label>
+        <input type="text" name="cooking_0_20_cooking_oil_other" id="id_cooking_0_20_cooking_oil_other" class="custom-class" placeholder="Cooking 0-20 Cooking Oil (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_saute_frequency">Cooking 0-20 Saute Frequency:</label>
+        <input type="text" name="cooking_0_20_saute_frequency" id="id_cooking_0_20_saute_frequency" class="custom-class" placeholder="Cooking 0-20 Saute Frequency">
+        </div>
+    </div>
+    
+    <!-- Seventeenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_0_20_fry_frequency">Cooking 0-20 Fry Frequency:</label>
+        <input type="text" name="cooking_0_20_fry_frequency" id="id_cooking_0_20_fry_frequency" class="custom-class" placeholder="Cooking 0-20 Fry Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_0_20_deepfry_frequency">Cooking 0-20 Deep Fry Frequency:</label>
+        <input type="text" name="cooking_0_20_deepfry_frequency" id="id_cooking_0_20_deepfry_frequency" class="custom-class" placeholder="Cooking 0-20 Deep Fry Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_frequency">Cooking 21-40 Frequency:</label>
+        <input type="text" name="cooking_21_40_frequency" id="id_cooking_21_40_frequency" class="custom-class" placeholder="Cooking 21-40 Frequency">
+        </div>
+    </div>
+    
+    <!-- Eighteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_21_40_frequency_times">Cooking 21-40 Frequency Times:</label>
+        <input type="text" name="cooking_21_40_frequency_times" id="id_cooking_21_40_frequency_times" class="custom-class" placeholder="Cooking 21-40 Frequency Times">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_fuel">Cooking 21-40 Fuel:</label>
+        <input type="text" name="cooking_21_40_fuel" id="id_cooking_21_40_fuel" class="custom-class" placeholder="Cooking 21-40 Fuel">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_fuel_other">Cooking 21-40 Fuel (Other):</label>
+        <input type="text" name="cooking_21_40_fuel_other" id="id_cooking_21_40_fuel_other" class="custom-class" placeholder="Cooking 21-40 Fuel (Other)">
+        </div>
+    </div>
+    
+    <!-- Nineteenth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_21_40_cooking_oil">Cooking 21-40 Cooking Oil:</label>
+        <input type="text" name="cooking_21_40_cooking_oil" id="id_cooking_21_40_cooking_oil" class="custom-class" placeholder="Cooking 21-40 Cooking Oil">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_cooking_oil_store">Cooking 21-40 Cooking Oil (Store):</label>
+        <input type="text" name="cooking_21_40_cooking_oil_store" id="id_cooking_21_40_cooking_oil_store" class="custom-class" placeholder="Cooking 21-40 Cooking Oil (Store)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_cooking_oil_homemade">Cooking 21-40 Cooking Oil (Homemade):</label>
+        <input type="text" name="cooking_21_40_cooking_oil_homemade" id="id_cooking_21_40_cooking_oil_homemade" class="custom-class" placeholder="Cooking 21-40 Cooking Oil (Homemade)">
+        </div>
+    </div>
+    
+    <!-- Twentieth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_21_40_cooking_oil_other">Cooking 21-40 Cooking Oil (Other):</label>
+        <input type="text" name="cooking_21_40_cooking_oil_other" id="id_cooking_21_40_cooking_oil_other" class="custom-class" placeholder="Cooking 21-40 Cooking Oil (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_saute_frequency">Cooking 21-40 Saute Frequency:</label>
+        <input type="text" name="cooking_21_40_saute_frequency" id="id_cooking_21_40_saute_frequency" class="custom-class" placeholder="Cooking 21-40 Saute Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_21_40_fry_frequency">Cooking 21-40 Fry Frequency:</label>
+        <input type="text" name="cooking_21_40_fry_frequency" id="id_cooking_21_40_fry_frequency" class="custom-class" placeholder="Cooking 21-40 Fry Frequency">
+        </div>
+    </div>
+    
+    <!-- Twenty-first line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_21_40_deepfry_frequency">Cooking 21-40 Deep Fry Frequency:</label>
+        <input type="text" name="cooking_21_40_deepfry_frequency" id="id_cooking_21_40_deepfry_frequency" class="custom-class" placeholder="Cooking 21-40 Deep Fry Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_frequency">Cooking 41-60 Frequency:</label>
+        <input type="text" name="cooking_41_60_frequency" id="id_cooking_41_60_frequency" class="custom-class" placeholder="Cooking 41-60 Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_frequency_times">Cooking 41-60 Frequency Times:</label>
+        <input type="text" name="cooking_41_60_frequency_times" id="id_cooking_41_60_frequency_times" class="custom-class" placeholder="Cooking 41-60 Frequency Times">
+        </div>
+    </div>
+    
+    <!-- Twenty-second line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_41_60_fuel">Cooking 41-60 Fuel:</label>
+        <input type="text" name="cooking_41_60_fuel" id="id_cooking_41_60_fuel" class="custom-class" placeholder="Cooking 41-60 Fuel">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_fuel_other">Cooking 41-60 Fuel (Other):</label>
+        <input type="text" name="cooking_41_60_fuel_other" id="id_cooking_41_60_fuel_other" class="custom-class" placeholder="Cooking 41-60 Fuel (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_cooking_oil">Cooking 41-60 Cooking Oil:</label>
+        <input type="text" name="cooking_41_60_cooking_oil" id="id_cooking_41_60_cooking_oil" class="custom-class" placeholder="Cooking 41-60 Cooking Oil">
+        </div>
+    </div>
+    
+    <!-- Twenty-third line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_41_60_cooking_oil_store">Cooking 41-60 Cooking Oil (Store):</label>
+        <input type="text" name="cooking_41_60_cooking_oil_store" id="id_cooking_41_60_cooking_oil_store" class="custom-class" placeholder="Cooking 41-60 Cooking Oil (Store)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_cooking_oil_homemade">Cooking 41-60 Cooking Oil (Homemade):</label>
+        <input type="text" name="cooking_41_60_cooking_oil_homemade" id="id_cooking_41_60_cooking_oil_homemade" class="custom-class" placeholder="Cooking 41-60 Cooking Oil (Homemade)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_cooking_oil_other">Cooking 41-60 Cooking Oil (Other):</label>
+        <input type="text" name="cooking_41_60_cooking_oil_other" id="id_cooking_41_60_cooking_oil_other" class="custom-class" placeholder="Cooking 41-60 Cooking Oil (Other)">
+        </div>
+    </div>
+    
+    <!-- Twenty-fourth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_41_60_saute_frequency">Cooking 41-60 Saute Frequency:</label>
+        <input type="text" name="cooking_41_60_saute_frequency" id="id_cooking_41_60_saute_frequency" class="custom-class" placeholder="Cooking 41-60 Saute Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_fry_frequency">Cooking 41-60 Fry Frequency:</label>
+        <input type="text" name="cooking_41_60_fry_frequency" id="id_cooking_41_60_fry_frequency" class="custom-class" placeholder="Cooking 41-60 Fry Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_41_60_deepfry_frequency">Cooking 41-60 Deep Fry Frequency:</label>
+        <input type="text" name="cooking_41_60_deepfry_frequency" id="id_cooking_41_60_deepfry_frequency" class="custom-class" placeholder="Cooking 41-60 Deep Fry Frequency">
+        </div>
+    </div>
+    
+    <!-- Twenty-fifth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_61_plus_frequency">Cooking 61+ Frequency:</label>
+        <input type="text" name="cooking_61_plus_frequency" id="id_cooking_61_plus_frequency" class="custom-class" placeholder="Cooking 61+ Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_frequency_times">Cooking 61+ Frequency Times:</label>
+        <input type="text" name="cooking_61_plus_frequency_times" id="id_cooking_61_plus_frequency_times" class="custom-class" placeholder="Cooking 61+ Frequency Times">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_fuel">Cooking 61+ Fuel:</label>
+        <input type="text" name="cooking_61_plus_fuel" id="id_cooking_61_plus_fuel" class="custom-class" placeholder="Cooking 61+ Fuel">
+        </div>
+    </div>
+    
+    <!-- Twenty-sixth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_61_plus_fuel_other">Cooking 61+ Fuel (Other):</label>
+        <input type="text" name="cooking_61_plus_fuel_other" id="id_cooking_61_plus_fuel_other" class="custom-class" placeholder="Cooking 61+ Fuel (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_cooking_oil">Cooking 61+ Cooking Oil:</label>
+        <input type="text" name="cooking_61_plus_cooking_oil" id="id_cooking_61_plus_cooking_oil" class="custom-class" placeholder="Cooking 61+ Cooking Oil">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_cooking_oil_store">Cooking 61+ Cooking Oil (Store):</label>
+        <input type="text" name="cooking_61_plus_cooking_oil_store" id="id_cooking_61_plus_cooking_oil_store" class="custom-class" placeholder="Cooking 61+ Cooking Oil (Store)">
+        </div>
+    </div>
+    
+    <!-- Twenty-seventh line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_61_plus_cooking_oil_homemade">Cooking 61+ Cooking Oil (Homemade):</label>
+        <input type="text" name="cooking_61_plus_cooking_oil_homemade" id="id_cooking_61_plus_cooking_oil_homemade" class="custom-class" placeholder="Cooking 61+ Cooking Oil (Homemade)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_cooking_oil_other">Cooking 61+ Cooking Oil (Other):</label>
+        <input type="text" name="cooking_61_plus_cooking_oil_other" id="id_cooking_61_plus_cooking_oil_other" class="custom-class" placeholder="Cooking 61+ Cooking Oil (Other)">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_saute_frequency">Cooking 61+ Saute Frequency:</label>
+        <input type="text" name="cooking_61_plus_saute_frequency" id="id_cooking_61_plus_saute_frequency" class="custom-class" placeholder="Cooking 61+ Saute Frequency">
+        </div>
+    </div>
+    
+    <!-- Twenty-eighth line -->
+    <div class="form-line">
+        <div class="form-field">
+        <label for="id_cooking_61_plus_fry_frequency">Cooking 61+ Fry Frequency:</label>
+        <input type="text" name="cooking_61_plus_fry_frequency" id="id_cooking_61_plus_fry_frequency" class="custom-class" placeholder="Cooking 61+ Fry Frequency">
+        </div>
+    
+        <div class="form-field">
+        <label for="id_cooking_61_plus_deepfry_frequency">Cooking 61+ Deep Fry Frequency:</label>
+        <input type="text" name="cooking_61_plus_deepfry_frequency" id="id_cooking_61_plus_deepfry_frequency" class="custom-class" placeholder="Cooking 61+ Deep Fry Frequency">
+        </div>
+    </div>
+    
+    <!-- Additional lines can be added here for more fields and labels -->
+    
+    </form>
+</div>
+  
+
+{% endblock %}
